@@ -1,0 +1,115 @@
+{
+  "_readme": "Public settings for the Midnight-on-X dashboard. Safe to commit: no secrets live here (API keys go in GitHub Actions secrets). After editing keyword lists run `node scripts/fetch-x.mjs --mode=reclassify` (free, offline).",
+  "handle": "",
+  "repo": "MJ-Jinx/midnight-leader-dashboard-private",
+  "publicRepo": "MJ-Jinx/midnight-leader-dashboard",
+  "profile": { "role": "Nightforce Leader", "area": "South Africa", "framework": "the SA KPI framework" },
+  "timezone": "Africa/Johannesburg",
+  "timezoneLabel": "SAST",
+  "refreshUtc": "04:15",
+  "fetch": {
+    "dailyWindowDays": 7,
+    "weeklyWindowDays": 29,
+    "mentions": true,
+    "mentionsWindowDays": 3,
+    "maxPostsPerRun": 1000,
+    "maxMentionsPerRun": 500,
+    "exclude": []
+  },
+  "midnight": {
+    "accounts": ["MidnightNtwrk", "midnightfdn"],
+    "domains": ["midnight.network", "github.com/midnightntwrk", "noctisagentic.zone"],
+    "strong": [
+      "midnight network", "midnightnetwork", "midnight blockchain", "midnight chain",
+      "midnight.network", "$night", "night token", "cnight", "nightforce", "aliit",
+      "compact language", "compactc", "compact contract", "compact contracts",
+      "compact smart contract", "midnight.js", "midnight-js", "midnightntwrk",
+      "glacier drop", "scavenger mine", "zswap", "kachina", "rational privacy",
+      "dust token", "noctis", "shieldvin"
+    ],
+    "medium": [
+      "zero-knowledge", "zero knowledge", "zk", "zkp", "zk proof", "selective disclosure",
+      "privacy-preserving", "data protection", "dust", "#night", "lace", "proof server",
+      "1am", "partner chain", "cardano partner chain", "waterline"
+    ],
+    "timePhrases": [
+      "at midnight", "past midnight", "after midnight", "until midnight", "till midnight",
+      "before midnight", "since midnight", "by midnight", "around midnight", "to midnight",
+      "from midnight", "midnight snack", "midnight oil", "midnight sun", "midnight run"
+    ],
+    "overrides": { "include": [], "exclude": [] }
+  },
+  "series": [
+    { "id": "daily-fact", "label": "Daily Fact", "phrases": ["daily fact #"] },
+    { "id": "terminology", "label": "Midnight Terminology", "phrases": ["midnight terminology series"] },
+    { "id": "myth-reality", "label": "Myth vs Reality", "phrases": ["myth vs reality series", "myth vs. reality series"] },
+    {
+      "id": "roadmap",
+      "label": "Roadmap breakdown",
+      "phrases": ["roadmap now runs to", "of @midnightntwrk's roadmap", "of the roadmap", "track on @midnightntwrk's roadmap", "broke down @midnightntwrk's roadmap", "line from @midnightntwrk's roadmap"],
+      "from": "2026-10-20",
+      "to": "2026-10-29",
+      "kinds": ["original", "quote"]
+    }
+  ],
+  "local": {
+    "label": "SA-specific",
+    "short": "SA",
+    "terms": [
+      "south africa", "south african", "south africans", "cape town", "capetown",
+      "johannesburg", "joburg", "jozi", "durban", "pretoria", "tshwane", "stellenbosch",
+      "gqeberha", "port elizabeth", "bloemfontein", "mzansi", "#southafrica", "#capetown",
+      "🇿🇦", "nightforce sa", "midnight sa"
+    ]
+  },
+  "themes": [
+    {
+      "id": "build",
+      "label": "Build & dev",
+      "pillar": 3,
+      "terms": [
+        "compact", "contract", "contracts", "circuit", "deploy", "deployed", "sdk", "devnet",
+        "testnet", "preprod", "localnet", "github", "repo", "code", "dapp", "dapps",
+        "proof server", "zk proof", "hackathon", "bounty", "shipped", "shipping", "building",
+        "builder", "builders", "tutorial", "midnight-js", "midnight.js", "noctis", "prototype",
+        "demo"
+      ]
+    },
+    {
+      "id": "events",
+      "label": "Events & community",
+      "pillar": 2,
+      "terms": [
+        "meetup", "meetups", "event", "events", "space", "spaces", "ama", "livestream",
+        "live stream", "workshop", "workshops", "irl", "conference", "summit", "join us",
+        "rsvp", "luma", "tonight", "panel", "fireside", "community call"
+      ]
+    },
+    {
+      "id": "education",
+      "label": "Education & explainers",
+      "pillar": 2,
+      "terms": [
+        "privacy", "zero-knowledge", "zero knowledge", "zk", "explainer", "thread", "🧵",
+        "learn", "guide", "how to", "rational privacy", "selective disclosure",
+        "data protection", "101", "eli5"
+      ]
+    },
+    {
+      "id": "partnerships",
+      "label": "Partnerships",
+      "pillar": 1,
+      "terms": [
+        "partner", "partners", "partnership", "mou", "collaboration", "collab", "university",
+        "bank", "enterprise", "institution", "regulator", "fintech", "incubator",
+        "accelerator"
+      ]
+    },
+    {
+      "id": "amplify",
+      "label": "Amplification",
+      "pillar": 2,
+      "terms": ["announce", "announced", "announcement", "news", "launch", "launched", "mainnet"]
+    }
+  ]
+}

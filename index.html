@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en" data-radius="soft" data-ground="sky">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Midnight on X · KPI dashboard</title>
+<meta name="description" content="Self-updating KPI and planning dashboard for Midnight-related posts on X, tracked against the Nightforce South Africa KPI framework.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Midnight on X · KPI dashboard">
+<meta property="og:description" content="Midnight posts from @Jinx_MJ_K, tracked daily against the Nightforce South Africa KPI framework.">
+<meta property="og:url" content="https://mj-jinx.github.io/midnight-leader-dashboard/">
+<meta property="og:image" content="https://mj-jinx.github.io/midnight-leader-dashboard/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#eef0f3">
+<link rel="canonical" href="https://mj-jinx.github.io/midnight-leader-dashboard/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..700&family=JetBrains+Mono:wght@400..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/ui/base.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<style>
+:root {
+  --p-bg: #eef0f3; --p-surface: #e2e5ea; --p-ink: #0b0c0e; --p-muted: #5d6470;
+  --p-accent: #1f2de6; --p-accent-ink: #ffffff; --p-action: #1f2de6; --p-action-ink: #ffffff;
+  --p-inv-bg: #0b0c0e; --p-inv-surface: #17181a; --p-inv-ink: #eef0f3; --p-inv-muted: #8e8f92;
+  --p-inv-accent: #eef0f3; --p-inv-accent-ink: #0b0c0e; --p-inv-action: #eef0f3; --p-inv-action-ink: #0b0c0e;
+  --font-display: "Onest", system-ui, sans-serif;
+  --font-text: "Onest", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 400;
+  --display-tracking: -0.035em;
+  --display-tracking-xl: -0.04em;
+}
+</style>
+<script src="assets/backgrounds/backgrounds.js"></script>
+<link rel="stylesheet" href="assets/dashboard.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body class="db">
+
+<header class="db-top">
+  <div class="db-wrap db-top__bar">
+    <a class="db-brand" href="#overview" aria-label="Midnight on X, back to the top">
+      <svg class="db-brand__mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2.5" width="20" height="5.5" rx="2.75"/><rect x="2" y="9.25" width="14" height="5.5" rx="2.75"/><rect x="2" y="16" width="8" height="5.5" rx="2.75"/></svg>
+      <span class="db-brand__text"><b>Midnight on X</b><small data-bind="brand-sub">Nightforce Leader · South Africa</small></span>
+    </a>
+    <nav class="db-tabs" aria-label="Dashboard sections">
+      <a href="#overview">KPIs</a>
+      <a href="#trends">Trends</a>
+      <a href="#builders">Builders</a>
+      <a href="#series">Series</a>
+      <a href="#plan" data-owner>Plan &amp; report</a>
+      <a href="#posts">All posts</a>
+    </nav>
+    <div class="db-top__actions">
+      <div class="db-refresh">
+        <button type="button" class="db-iconbtn" data-bind="refresh-btn" aria-label="Refresh the data" aria-expanded="false" aria-controls="refresh-panel">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.61-3.89M13.5 2.5v3.2h-3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Refresh</span>
+        </button>
+        <div class="db-pop" id="refresh-panel" data-bind="refresh-panel" role="dialog" aria-label="Refresh the data" hidden>
+          <p class="db-pop__now">Showing data from <b data-bind="refresh-short">—</b></p>
+          <button type="button" class="db-btn db-btn--block" data-bind="reload">Reload the latest data</button>
+          <p class="db-pop__hint" data-bind="refresh-hint">Loads the newest numbers already saved by the daily 06:15 SAST refresh.</p>
+          <div data-owner>
+            <a class="db-btn db-btn--ghost db-btn--block" data-bind="fetch-x" href="https://github.com/MJ-Jinx/midnight-leader-dashboard/actions/workflows/refresh.yml" target="_blank" rel="noopener">Fetch new data from X ↗</a>
+            <p class="db-pop__hint">Opens GitHub: click <b>Run workflow</b>, then <b>Run workflow</b> again. This page checks every 30 seconds and loads the new numbers by itself, usually within 5 minutes. <span data-bind="fetch-cost"></span></p>
+          </div>
+          <p class="db-pop__status" role="status" data-bind="refresh-status"></p>
+        </div>
+      </div>
+      <label class="db-select"><span>Period</span><select class="js-period" aria-label="Period"></select></label>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="db-head bg-mist" id="overview" aria-labelledby="overview-h">
+    <div class="db-wrap">
+      <div class="db-head__row">
+        <div class="db-head__title">
+          <h1 id="overview-h">KPIs for <span data-bind="period-label">this period</span></h1>
+          <p class="db-sub" data-bind="sub">Loading…</p>
+        </div>
+        <p class="db-head__meta"><span data-bind="period-days"></span><span>Updated <b data-bind="refresh-short">—</b></span></p>
+      </div>
+      <div class="db-banner" data-bind="banner" role="status" hidden></div>
+      <div class="db-banner db-banner--note" data-bind="period-note" role="status" hidden></div>
+      <div class="db-kpis" data-bind="kpi-cards" aria-label="Key results"></div>
+    </div>
+  </section>
+
+  <section class="db-section" id="trends" aria-labelledby="trends-h">
+    <div class="db-wrap">
+      <h2 class="db-sh" id="trends-h">Trends</h2>
+      <div class="db-grid">
+        <article class="db-card db-c4">
+          <header class="db-card__head"><h3 data-bind="posts-title">Midnight posts per week</h3><p>Originals, replies, threads and quotes. Reposts excluded.</p></header>
+          <div class="db-chart" data-bind="ch-posts" role="img" aria-label="Midnight posts per week"></div>
+          <details class="db-tbl"><summary>Show as table</summary><div class="db-scroll" data-bind="tb-posts"></div></details>
+        </article>
+        <article class="db-card db-c4">
+          <header class="db-card__head"><h3 data-bind="impr-title">Impressions per week</h3><p>On your own Midnight posts, archive posts included.</p></header>
+          <div class="db-chart" data-bind="ch-impr" role="img" aria-label="Impressions per week"></div>
+          <details class="db-tbl"><summary>Show as table</summary><div class="db-scroll" data-bind="tb-impr"></div></details>
+        </article>
+        <article class="db-card db-c4">
+          <header class="db-card__head"><h3>Followers</h3><p>One snapshot per day, taken by the daily refresh.</p></header>
+          <div class="db-chart" data-bind="ch-fol" role="img" aria-label="Total followers by day"></div>
+          <details class="db-tbl"><summary>Show as table</summary><div class="db-scroll" data-bind="tb-fol"></div></details>
+        </article>
+        <article class="db-card db-c4">
+          <header class="db-card__head"><h3>Posting days</h3><p>Midnight posts per day. Consistency matters more than bursts.</p></header>
+          <div class="db-chart db-chart--heat" data-bind="ch-heat" role="img" aria-label="Midnight posts per day"></div>
+        </article>
+        <article class="db-card db-c4">
+          <header class="db-card__head"><h3>Content mix by theme</h3><p>A post can carry several themes. P1 partnerships, P2 community, P3 developers.</p></header>
+          <div class="mx-bars" data-bind="ch-themes"></div>
+        </article>
+        <article class="db-card db-c4">
+          <header class="db-card__head"><h3>Post types</h3><p>Replies and threads show community engagement; reposts show amplification.</p></header>
+          <div class="mx-bars" data-bind="ch-kinds"></div>
+        </article>
+        <article class="db-card db-c12">
+          <header class="db-card__head"><h3>Top posts</h3><p>Midnight posts in this period with the most impressions.</p></header>
+          <ol class="mx-top" data-bind="top-list" aria-label="Top Midnight posts"></ol>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="db-section" id="builders" aria-labelledby="builders-h">
+    <div class="db-wrap">
+      <div class="db-sh-row">
+        <h2 class="db-sh" id="builders-h">Builders <span data-bind="builders-sub">People helped to get started building</span></h2>
+        <div class="db-sh-actions">
+          <button type="button" class="db-btn db-btn--ghost db-btn--sm" data-bind="mq-toggle" aria-pressed="false" hidden>Pause</button>
+          <button type="button" class="db-btn db-btn--ghost db-btn--sm" data-bind="builder-add" data-owner>Add a builder</button>
+        </div>
+      </div>
+      <p class="db-status db-builders__status" data-bind="builders-status" role="status" aria-live="polite"></p>
+      <div class="db-builders" data-bind="builders"></div>
+    </div>
+  </section>
+
+  <section class="db-section" id="series" aria-labelledby="series-h">
+    <div class="db-wrap">
+      <h2 class="db-sh" id="series-h">Series <span>Every series over its full run, whatever the Period menu says</span></h2>
+      <div class="db-grid">
+        <div class="db-c12 db-mini-tiles" data-bind="series-tiles"></div>
+        <article class="db-card db-c12">
+          <header class="db-card__head"><h3>Series against loose posts</h3><p>Loose posts are your other originals and quotes (replies and thread continuations excluded). "vs loose" compares median impressions, so one viral post doesn't skew it.<span data-owner> Series are defined under "series" in config.json.</span></p></header>
+          <div class="db-scroll" data-bind="series-table"></div>
+        </article>
+        <article class="db-card db-c4">
+          <header class="db-card__head"><h3>Median impressions per post</h3><p>Each series against loose posts.</p></header>
+          <div class="mx-bars" data-bind="series-bars"></div>
+        </article>
+        <article class="db-card db-c8">
+          <header class="db-card__head"><h3>Episode by episode</h3><p>Impressions for each post in the series, in order, on a shared scale. Click a bar to open the post.</p></header>
+          <div class="db-eps" data-bind="series-grid"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="db-section" id="plan" aria-labelledby="plan-h" data-owner>
+    <div class="db-wrap">
+      <h2 class="db-sh" id="plan-h">Plan &amp; report <span data-bind="plan-hint">Targets and calendar come from plan.json.</span></h2>
+      <div class="db-grid">
+        <article class="db-card db-c6">
+          <header class="db-card__head"><h3>Targets this period</h3></header>
+          <div class="db-scroll" data-bind="report-targets"></div>
+          <div class="db-actions">
+            <button type="button" class="db-btn" data-bind="copy">Copy quarterly summary</button>
+            <span class="db-status" role="status" data-bind="copy-status"></span>
+          </div>
+          <details class="db-tbl"><summary>Preview summary text</summary><pre class="db-summary" data-bind="summary"></pre></details>
+        </article>
+        <article class="db-card db-c6">
+          <header class="db-card__head"><h3>Focus</h3></header>
+          <ul class="db-focus" data-bind="report-focus"></ul>
+          <header class="db-card__head db-card__head--gap"><h3>Content calendar</h3></header>
+          <div class="db-scroll" data-bind="report-calendar"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="db-section" id="posts" aria-labelledby="posts-h">
+    <div class="db-wrap">
+      <h2 class="db-sh" id="posts-h">All Midnight posts <span data-owner>Flagged posts matched only weak signals. Confirm or exclude them via midnight.overrides in config.json.</span></h2>
+      <div class="db-app ui" data-bind="app" aria-label="Midnight posts">
+        <div class="app__bar">
+          <label class="app__field app__field--grow"><span>Search</span><input type="search" class="app__search" placeholder="Search posts…"></label>
+          <label class="app__field"><span>Theme</span><select class="app__filter" data-filter="theme"></select></label>
+          <label class="app__field"><span>Type</span><select class="app__filter" data-filter="kind"></select></label>
+          <label class="app__field"><span>Series</span><select class="app__filter" data-filter="series"></select></label>
+          <label class="app__check" data-bind="focus-filter"><input type="checkbox" data-filter="local"> <span data-bind="focus-filter-label">SA-specific</span></label>
+          <label class="app__check" data-owner><input type="checkbox" data-filter="review"> Needs review</label>
+        </div>
+        <div class="app__pane app__pane--list">
+          <div class="app__cols" data-bind="app-cols"></div>
+          <ul class="app__rows" data-bind="app-rows"></ul>
+          <div class="app__pager"><span class="app__count" data-bind="app-count"></span><button type="button" class="app__pg" data-page="prev" aria-label="Previous page">‹</button><span data-bind="app-page">1 of 1</span><button type="button" class="app__pg" data-page="next" aria-label="Next page">›</button></div>
+        </div>
+        <div class="app__pane app__pane--open" data-bind="app-open" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog class="db-dialog" data-bind="builder-dialog" aria-labelledby="bd-h">
+  <form class="db-form" data-bind="builder-form" novalidate>
+    <header class="db-form__head">
+      <h3 id="bd-h">Add a builder</h3>
+      <p>Adds them to the dashboard straight away. The page is public, so only add people who are happy to be listed, with their public profile links.</p>
+    </header>
+    <div class="db-form__grid">
+      <label class="db-field db-field--wide"><span>Name *</span><input name="name" required maxlength="80" autocomplete="off"></label>
+      <label class="db-field"><span>Started building</span><input name="since" type="date"></label>
+      <label class="db-field"><span>Stage</span><select name="stage"><option value="">—</option><option>Learning</option><option>Prototyping</option><option>Building</option><option>Launched</option></select></label>
+      <label class="db-field db-field--wide"><span>What they're building</span><input name="building" maxlength="120" autocomplete="off"></label>
+      <label class="db-field db-field--wide"><span>How you helped</span><textarea name="note" rows="2" maxlength="240"></textarea></label>
+      <p class="db-form__sub db-field--wide">Social links</p>
+      <label class="db-field"><span>User X profile</span><input name="userX" placeholder="@their_handle" autocomplete="off"></label>
+      <label class="db-field"><span>Project X profile</span><input name="projectX" placeholder="@project_handle" autocomplete="off"></label>
+      <label class="db-field"><span>GitHub</span><input name="github" placeholder="username" autocomplete="off"></label>
+      <label class="db-field"><span>LinkedIn</span><input name="linkedin" type="url" placeholder="https://linkedin.com/in/…" autocomplete="off"></label>
+      <label class="db-field"><span>Website</span><input name="website" type="url" placeholder="https://" autocomplete="off"></label>
+      <label class="db-field"><span>Discord</span><input name="discord" placeholder="Invite link or username" autocomplete="off"></label>
+      <label class="db-field"><span>YouTube</span><input name="youtube" type="url" placeholder="https://youtube.com/@…" autocomplete="off"></label>
+    </div>
+    <p class="db-form__error" role="alert" data-bind="builder-error"></p>
+    <footer class="db-form__foot">
+      <button type="button" class="db-btn db-btn--ghost" data-bind="builder-close">Close</button>
+      <button type="submit" class="db-btn" data-bind="builder-save">Add the builder</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="db-dialog" data-bind="owner-dialog" aria-labelledby="od-h">
+  <form class="db-form" data-bind="owner-form" novalidate>
+    <header class="db-form__head">
+      <h3 id="od-h">Owner sign-in</h3>
+      <p>For the owner of this dashboard. Signing in shows your targets, link clicks and X API spend, and the buttons that change the dashboard. Everyone else sees a view-only page.</p>
+    </header>
+    <div class="db-gh">
+      <p class="db-form__sub">Sign in once on this browser</p>
+      <ol class="db-steps">
+        <li><a data-bind="owner-new" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Make a GitHub key ↗</a>. Its name, expiry and access are filled in for you.</li>
+        <li>Under <b>Repository access</b>, choose <b>Only select repositories</b> and pick <b data-bind="owner-repo">this dashboard's repository</b>. Then press <b>Generate token</b>.</li>
+        <li>Copy the key and paste it here.</li>
+      </ol>
+      <label class="db-field"><span>GitHub key</span><input name="ghtoken" type="password" placeholder="github_pat_…" autocomplete="off" spellcheck="false"></label>
+      <p class="db-status">The key stays in this browser and is sent only to GitHub. It opens this one repository and nothing else.</p>
+    </div>
+    <p class="db-form__error" role="alert" data-bind="owner-error"></p>
+    <footer class="db-form__foot">
+      <button type="button" class="db-btn db-btn--ghost" data-bind="owner-close">Close</button>
+      <button type="submit" class="db-btn" data-bind="owner-go">Sign in</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="db-dialog db-profile" data-bind="profile-dialog" aria-labelledby="pf-name">
+  <div data-bind="profile-body"></div>
+</dialog>
+
+<footer class="db-foot">
+  <div class="db-wrap" data-bind="foot"></div>
+</footer>
+</body>
+</html>
