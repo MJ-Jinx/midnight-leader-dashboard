@@ -1657,6 +1657,27 @@
     });
   }
 
+  /* ---------- kit copies: tell the owner when a newer kit is out ---------- */
+  // kit.json says which kit the copy came from and when it was last updated (a copy never updated counts from the day
+  // it was made). Only in copies of the kit (config.json "kitCopy") and only in owner mode.
+  async function checkKitUpdate() {
+    if (!owner || !S?.config?.kitCopy) return;
+    try {
+      const kit = await ghFile('kit.json');
+      if (!kit || !/^[\w-]+\/[\w.-]+$/.test(String(kit.repo || ''))) return;
+      const since = Date.parse(kit.updated || (await gh('', ghToken())).created_at);
+      const r = await fetch(`https://api.github.com/repos/${kit.repo}/commits/main`, { headers: { Accept: 'application/vnd.github+json' }, cache: 'no-cache' });
+      if (!r.ok) return;
+      const latest = await r.json();
+      if (!(Date.parse(latest?.commit?.committer?.date || '') > since + 60e3)) return;
+      const el = $b('kit-note');
+      el.replaceChildren(h('strong', { text: 'A newer version of the kit is out. ' }), 'To install it, open ',
+        h('a', { href: `https://github.com/${repoName()}/actions/workflows/update.yml`, target: '_blank', rel: 'noopener', text: 'Update from the kit ↗' }),
+        ' and click Run workflow twice. Your settings and numbers are kept.');
+      el.hidden = false;
+    } catch { /* GitHub didn't answer: check again next time */ }
+  }
+
   /* ---------- refresh: reload the saved data now, or watch for a new X fetch ---------- */
   let watch = null;
   function fillPeriods(selects) {
@@ -1859,6 +1880,7 @@
     renderChrome();
     renderSeries();
     render();
+    checkKitUpdate();
     $b('copy').addEventListener('click', async () => {
       const text = summaryText(compute(current));
       const status = $b('copy-status');
