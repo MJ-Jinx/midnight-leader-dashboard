@@ -1,0 +1,8 @@
+{
+  "_readme": "Your accounts for the Articles and code section. Set them with Connected accounts on the page (after Owner sign-in), or edit this file. Each one takes a name, @name or profile link; leave it empty to skip. Substack takes your publication's name or address. githubOrgs: the GitHub organisations whose pull requests and issues count as Midnight work.",
+  "github": "",
+  "devto": "",
+  "medium": "",
+  "substack": "",
+  "githubOrgs": ["midnightntwrk", "LFDT-Minokawa"]
+}

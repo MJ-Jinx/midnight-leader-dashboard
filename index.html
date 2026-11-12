@@ -51,6 +51,7 @@
       <a href="#trends">Trends</a>
       <a href="#builders">Builders</a>
       <a href="#events">Events</a>
+      <a href="#content">Articles &amp; code</a>
       <a href="#series">Series</a>
       <a href="#plan" data-owner>Plan &amp; report</a>
       <a href="#posts">All posts</a>
@@ -159,6 +160,24 @@
       <article class="db-card" data-bind="events-card">
         <header class="db-card__head"><h3 data-bind="events-title">Events in this period</h3><p>Click an event for its details.<span data-owner> Cost, co-hosts, feedback and notes show only to you.</span></p></header>
         <div class="db-scroll" data-bind="events-table"></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="db-section" id="content" aria-labelledby="content-h">
+    <div class="db-wrap">
+      <div class="db-sh-row">
+        <h2 class="db-sh" id="content-h">Articles and code <span data-bind="content-sub">Midnight work beyond X</span></h2>
+        <div class="db-sh-actions">
+          <button type="button" class="db-btn db-btn--ghost db-btn--sm" data-bind="sources-open" data-owner>Connected accounts</button>
+        </div>
+      </div>
+      <p class="db-status db-builders__status" data-bind="content-status" role="status" aria-live="polite"></p>
+      <div class="db-ev-tiles" data-bind="content-tiles"></div>
+      <article class="db-card" data-bind="content-card">
+        <header class="db-card__head"><h3 data-bind="content-title">In this period</h3><p data-bind="content-accounts"></p></header>
+        <div class="db-scroll" data-bind="content-table"></div>
+        <div class="db-actions" data-bind="content-more-row" hidden><button type="button" class="db-btn db-btn--ghost db-btn--sm" data-bind="content-more">Show all</button></div>
       </article>
     </div>
   </section>
@@ -292,6 +311,27 @@
     <footer class="db-form__foot">
       <button type="button" class="db-btn db-btn--ghost" data-bind="event-close">Close</button>
       <button type="submit" class="db-btn" data-bind="event-save">Save the event</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="db-dialog" data-bind="sources-dialog" aria-labelledby="sd-h">
+  <form class="db-form" data-bind="sources-form" novalidate>
+    <header class="db-form__head">
+      <h3 id="sd-h">Connected accounts</h3>
+      <p>Type your name on each site you write or build on. No passwords: the dashboard reads only what is public, keeps what is about Midnight, and checks again every day. Leave a field empty to skip that site.</p>
+    </header>
+    <div class="db-form__grid">
+      <label class="db-field"><span>GitHub</span><input name="github" placeholder="username" autocomplete="off" spellcheck="false"></label>
+      <label class="db-field"><span>dev.to</span><input name="devto" placeholder="username" autocomplete="off" spellcheck="false"></label>
+      <label class="db-field"><span>Medium</span><input name="medium" placeholder="@username" autocomplete="off" spellcheck="false"></label>
+      <label class="db-field"><span>Substack</span><input name="substack" placeholder="name, or name.substack.com" autocomplete="off" spellcheck="false"></label>
+      <p class="db-status db-field--wide">GitHub: your pull requests and issues in Midnight repositories, and your own public repositories about Midnight. dev.to: all your articles about Midnight, with reactions and comments. Medium and Substack: your latest posts about Midnight, kept from today on. Page views on dev.to need your dev.to API key, saved as the <code>DEVTO_API_KEY</code> secret (see the guide).</p>
+    </div>
+    <p class="db-form__error" role="alert" data-bind="sources-error"></p>
+    <footer class="db-form__foot">
+      <button type="button" class="db-btn db-btn--ghost" data-bind="sources-close">Close</button>
+      <button type="submit" class="db-btn" data-bind="sources-save">Save</button>
     </footer>
   </form>
 </dialog>

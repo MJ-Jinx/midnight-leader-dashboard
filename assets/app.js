@@ -102,12 +102,14 @@
     const site = (p) => fetch(p + q, { cache: bust ? 'no-store' : 'no-cache' }).then((r) => { if (!r.ok) throw new Error(`${p} → HTTP ${r.status}`); return r.json(); });
     const get = owner ? (p) => ghFile(p).catch(() => site(p)) : site;
     const noPlan = { quarters: {}, calendar: [] };
-    const [config, plan, posts, history, mentions, meta, buildersFile, previews, eventsFile] = await Promise.all([
+    const [config, plan, posts, history, mentions, meta, buildersFile, previews, eventsFile, sourcesFile, contentFile] = await Promise.all([
       get('config.json'), owner ? ghFile('plan.json').catch(() => noPlan) : noPlan,
       get('data/posts.json'), get('data/history.json'), get('data/mentions.json'), get('data/meta.json'),
       get('builders.json').catch(() => null),
       get('data/builder-previews.json').catch(() => ({})),
       get('events.json').catch(() => null),
+      get('sources.json').catch(() => null),
+      get('data/content.json').catch(() => null),
     ]);
     setZone(config);
     const series = (config.series || []).map((x) => ({ ...x, label: x.label || x.id, phrases: (x.phrases || []).map((p) => String(p).toLowerCase()), kinds: x.kinds || ['original', 'quote', 'thread'] }));
@@ -128,6 +130,7 @@
     const all = [...posts.posts, ...posts.other];
     return {
       config, plan, meta, themes, series, buildersFile, builders: normBuilders(buildersFile), previews: previews || {}, events: normEvents(eventsFile),
+      sources: sourcesFile || {}, content: normContent(contentFile),
       seriesById: new Map(series.map((x) => [x.id, x])),
       history: history.days || {},
       mentions: mentions.days || {},
@@ -628,6 +631,7 @@
       }),
       line(K('midnightMentions')),
       ...(S.events.length ? eventLines(P) : []),
+      ...contentLines(P),
     ];
     const top = topPosts(c, 1)[0];
     if (top) out.push('', `Top post: "${snippet(top.text, 140)}" — ${top.metrics.impressions != null ? nf.format(top.metrics.impressions) + ' impressions, ' + pct(eng(top) / top.metrics.impressions) + ' engagement' : nf.format(eng(top)) + ' engagements'} — ${top.url}`);
@@ -649,11 +653,18 @@
       const t = targetFor(k, P);
       return [k.label, targetText(k, t, P), v == null ? '—' : k.fmt(v), chip(statusOf(k, v, t, P))];
     }) : [];
+    // article and pull-request rows once accounts are connected or a target is set
+    const cs = contentStats(P);
+    const ctRows = connected().length || CONTENT_KPIS.some((k) => targetFor(k, P) != null) ? CONTENT_KPIS.map((k) => {
+      const v = k.key === 'articles' ? cs.articles.length : cs.prs.length;
+      const t = targetFor(k, P);
+      return [k.label, targetText(k, t, P), k.fmt(v), chip(statusOf(k, v, t, P))];
+    }) : [];
     $b('report-targets').replaceChildren(table(['KPI', 'Target', 'Actual', 'Status'], [...activeKpis().filter((k) => k.type !== 'info').map((k) => {
       const v = kVal(k, c);
       const t = targetFor(k, P);
       return [kLabel(k), targetText(k, t, P), v == null ? '—' : kFmt(k, v), chip(statusOf(k, v, t, P))];
-    }), ...evRows], [2]));
+    }), ...evRows, ...ctRows], [2]));
     $b('summary').textContent = summaryText(c);
     $b('copy').textContent = P.group === 'Years' ? 'Copy yearly summary' : P.group === 'Quarters' ? 'Copy quarterly summary' : 'Copy summary';
 
@@ -1064,6 +1075,241 @@
         owner ? h('button', { type: 'button', class: 'db-btn db-btn--ghost', text: 'Edit', onclick: () => { dlg.close(); openEventForm(e); } }) : null,
         h('button', { type: 'button', class: 'db-btn db-btn--ghost', text: 'Close', autofocus: true, onclick: () => dlg.close() }))));
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+
+  /* ---------- articles and code (data/content.json, written daily by the "Refresh articles and code" workflow) ---------- */
+  // The accounts come from sources.json (set with Connected accounts). Numbers a platform shows only to the author
+  // (dev.to page views) sit in each item's "private" block, which only the owner's page has. Targets: "articles" and
+  // "pullRequests" in plan.json.
+  const PLATFORM = { github: 'GitHub', devto: 'dev.to', medium: 'Medium', substack: 'Substack' };
+  const PLATFORM_KEYS = Object.keys(PLATFORM);
+  const KIND_LABEL = { article: 'Article', pr: 'Pull request', issue: 'Issue', repo: 'Repository' };
+  const CONTENT_KPIS = [
+    { key: 'articles', label: 'Articles', type: 'count', fmt: (v) => nf.format(v) },
+    { key: 'pullRequests', label: 'Pull requests', type: 'count', fmt: (v) => nf.format(v) },
+  ];
+  function normContent(file) {
+    if (!file) return null;
+    const items = (Array.isArray(file.items) ? file.items : []).filter((i) => i && i.title && i.url && Number.isFinite(Date.parse(i.date)));
+    return { updated: file.updated || null, accounts: file.accounts || {}, items: items.map((i) => ({ ...i, t: new Date(i.date) })) };
+  }
+  // the connected platforms: sources.json says so, even before the first check has run
+  const connected = () => PLATFORM_KEYS.filter((p) => String(S.sources?.[p] || '').trim());
+  const accountLabel = (p, user) => (p === 'substack' ? String(user || '').replace(/^https?:\/\//, '') : `@${String(user || '').replace(/^@/, '')}`);
+  const plural = (n, one, many = one + 's') => `${nf.format(n)} ${n === 1 ? one : many}`;
+  function contentStats(P) {
+    const items = S.content?.items || [];
+    const inP = P.key === 'all' ? items : items.filter((i) => i.t >= P.start && i.t < P.end);
+    const articles = inP.filter((i) => i.kind === 'article');
+    const devto = articles.filter((i) => i.source === 'devto');
+    const prs = inP.filter((i) => i.kind === 'pr');
+    const repos = items.filter((i) => i.kind === 'repo');
+    const viewed = devto.filter((i) => i.private?.views != null);
+    return {
+      inP, articles, prs, issues: inP.filter((i) => i.kind === 'issue'), repos, reposNew: inP.filter((i) => i.kind === 'repo'),
+      byPlatform: PLATFORM_KEYS.map((p) => [p, articles.filter((i) => i.source === p).length]).filter(([, n]) => n),
+      devtoCount: devto.length, reactions: sum(devto, (i) => i.metrics?.reactions), comments: sum(devto, (i) => i.metrics?.comments),
+      views: viewed.length ? sum(viewed, (i) => i.private.views) : null,
+      merged: prs.filter((i) => i.state === 'merged').length, stars: sum(repos, (i) => i.metrics?.stars),
+    };
+  }
+  // a tile; with a KPI it also gets the owner's target, status and progress, like the tiles at the top
+  function goalTile(P, label, value, meta, k, v) {
+    let m = meta; let st = null; let pic = null;
+    if (k) {
+      const t = targetFor(k, P);
+      if (owner) st = chip(statusOf(k, v, t, P));
+      if (t != null) { m = `Target ${targetText(k, t, P)}`; pic = paceBar(v, t, t * pace(P)); }
+    }
+    return h('div', { class: 'db-tile' }, h('p', { class: 'db-tile__k', text: label }), h('p', { class: 'db-tile__v', text: value }), st, pic, h('p', { class: 'db-tile__m', text: m }));
+  }
+  let contentAll = false; // "Show all" pressed
+  function renderContent(c) {
+    const P = c.P;
+    const on = connected();
+    const tilesEl = $b('content-tiles');
+    const card = $b('content-card');
+    const acc = S.content?.accounts || {};
+    const waiting = on.length && (!S.content || !on.some((p) => acc[p]));
+    tilesEl.classList.toggle('is-empty', !on.length || waiting);
+    card.hidden = !on.length || waiting;
+    $b('content-more-row').hidden = true;
+    if (!on.length) {
+      tilesEl.replaceChildren(h('div', { class: 'db-builders__empty' }, h('b', { text: 'No accounts connected yet.' }), owner ? ' Use Connected accounts to add your GitHub, dev.to, Medium or Substack name. Your Midnight articles and code then show up here.' : null));
+      return;
+    }
+    if (waiting) {
+      tilesEl.replaceChildren(h('div', { class: 'db-builders__empty' }, h('b', { text: 'Checking the connected accounts.' }), ' Articles and code show up here a minute or two after an account is connected.'));
+      return;
+    }
+    const cs = contentStats(P);
+    const hasArticles = on.some((p) => p !== 'github');
+    const hasGit = on.includes('github');
+    const tiles = [
+      hasArticles ? goalTile(P, 'Articles', nf.format(cs.articles.length), cs.byPlatform.length ? cs.byPlatform.map(([p, n]) => `${nf.format(n)} ${PLATFORM[p]}`).join(' · ') : 'None in this period', CONTENT_KPIS[0], cs.articles.length) : null,
+      on.includes('devto') ? goalTile(P, 'Reactions on dev.to', cs.devtoCount ? nf.format(cs.reactions) : '—', cs.devtoCount ? `${plural(cs.comments, 'comment')}${owner && cs.views != null ? ` · ${plural(cs.views, 'view')}` : ''}` : 'No dev.to articles in this period') : null,
+      hasGit ? goalTile(P, 'Pull requests', nf.format(cs.prs.length), cs.prs.length ? `${nf.format(cs.merged)} merged · in Midnight repos` : 'None in Midnight repos in this period', CONTENT_KPIS[1], cs.prs.length) : null,
+      hasGit ? goalTile(P, 'Issues', nf.format(cs.issues.length), 'opened in Midnight repos') : null,
+      hasGit ? goalTile(P, 'Midnight repos', nf.format(cs.repos.length), `${P.key !== 'all' && cs.reposNew.length ? `${nf.format(cs.reposNew.length)} new in ${P.label} · ` : ''}${plural(cs.stars, 'star')}`) : null,
+    ].filter(Boolean);
+    tilesEl.style.setProperty('--ev-n', tiles.length);
+    tilesEl.style.setProperty('--ev-mid', tiles.length % 4 === 0 ? 4 : 3);
+    tilesEl.replaceChildren(...tiles);
+
+    // where it all comes from; the owner also sees accounts that didn't answer
+    const parts = on.map((p) => {
+      const a = acc[p];
+      const label = `${PLATFORM[p]} ${accountLabel(p, a?.user || S.sources[p])}`;
+      const href = a?.profile && safeUrl(a.profile);
+      return href ? h('a', { href, target: '_blank', rel: 'noopener', text: label }) : label;
+    });
+    const notes = owner ? on.map((p) => acc[p]?.error || acc[p]?.note).filter(Boolean) : [];
+    $b('content-accounts').replaceChildren('From ', ...parts.flatMap((x, i) => (i ? [' · ', x] : [x])), '. Checked every day; only what is about Midnight is kept.', ...notes.map((n) => h('span', { class: 'db-ct-note', text: ' ' + n })));
+
+    const all = S.content.items;
+    const n = cs.inP.length;
+    $b('content-title').textContent = P.key === 'all' ? `Everything${n ? ` (${nf.format(n)})` : ''}` : `In ${P.label}${n ? ` (${nf.format(n)})` : ''}`;
+    const rows = cs.inP.map((i) => {
+      const numbers = i.kind === 'repo' ? `${plural(i.metrics?.stars || 0, 'star')} · ${plural(i.metrics?.forks || 0, 'fork')}`
+        : i.source === 'devto' ? `${plural(i.metrics?.reactions || 0, 'reaction')} · ${plural(i.metrics?.comments || 0, 'comment')}${owner && i.private?.views != null ? ` · ${plural(i.private.views, 'view')}` : ''}`
+          : (i.kind === 'pr' || i.kind === 'issue') && i.metrics?.comments ? plural(i.metrics.comments, 'comment') : '—';
+      const type = i.kind === 'pr'
+        ? h('span', { class: 'db-ev-date' }, 'Pull request', h('span', { class: 'mx-chip db-ev-up' + (i.state === 'merged' ? '' : ' mx-chip--none'), text: i.state === 'merged' ? 'Merged' : i.state === 'open' ? 'Open' : 'Closed' }))
+        : KIND_LABEL[i.kind] || i.kind;
+      return [
+        h('span', { class: 'db-ev-date', text: dLong.format(i.t) }),
+        h('span', { class: 'db-ct-item' },
+          h('a', { href: safeUrl(i.url) || '#', target: '_blank', rel: 'noopener', text: snippet(i.title, 90) }),
+          i.repo && i.kind !== 'repo' ? h('span', { class: 'db-ct-sub', text: i.repo }) : null,
+          owner && i.review ? h('span', { class: 'mx-chip mx-chip--warn db-ev-up', title: `Matched only a weak signal. To leave it out, add "${i.id}" to midnight.overrides.exclude in config.json.`, text: 'Needs review' }) : null),
+        PLATFORM[i.source] || i.source, type, numbers,
+      ];
+    });
+    const LIMIT = 15;
+    $b('content-table').replaceChildren(rows.length
+      ? table(['Date', 'Item', 'Where', 'Type', 'Numbers'], contentAll ? rows : rows.slice(0, LIMIT))
+      : h('p', { class: 'mx-empty', text: all.length ? `Nothing about Midnight in ${P.label}. ${plural(all.length, 'item')} in total: choose All time in the Period menu to see them all.` : 'Nothing about Midnight found on the connected accounts yet.' }));
+    $b('content-more-row').hidden = contentAll || rows.length <= LIMIT;
+    $b('content-more').textContent = `Show all ${nf.format(rows.length)}`;
+  }
+  // the summary's lines (only with connected accounts)
+  function contentLines(P) {
+    const on = connected();
+    if (!on.length || !S.content) return [];
+    const cs = contentStats(P);
+    const tgt = (k, v) => { const t = targetFor(k, P); return t != null ? ` (target ${targetText(k, t, P, false)}: ${statusOf(k, v, t, P).label.toLowerCase()})` : ''; };
+    const out = [];
+    if (on.some((p) => p !== 'github')) {
+      out.push(`• Articles about Midnight: ${nf.format(cs.articles.length)}${tgt(CONTENT_KPIS[0], cs.articles.length)}${cs.byPlatform.length ? ` — ${cs.byPlatform.map(([p, n]) => `${n} on ${PLATFORM[p]}`).join(', ')}` : ''}${cs.devtoCount ? `; ${plural(cs.reactions, 'reaction')} and ${plural(cs.comments, 'comment')} on dev.to` : ''}`);
+    }
+    if (on.includes('github')) {
+      out.push(`• GitHub: ${plural(cs.prs.length, 'pull request')} to Midnight repos${tgt(CONTENT_KPIS[1], cs.prs.length)}${cs.prs.length ? ` (${nf.format(cs.merged)} merged)` : ''}, ${plural(cs.issues.length, 'issue')}; ${plural(cs.repos.length, 'Midnight repo')} with ${plural(cs.stars, 'star')}`);
+    }
+    return out;
+  }
+
+  /* ---------- the Connected accounts box: commits sources.json itself (owner mode) ---------- */
+  const SOURCES_README = 'Your accounts for the Articles and code section. Set them with Connected accounts on the page (after Owner sign-in), or edit this file. Each one takes a name, @name or profile link; leave it empty to skip. Substack takes your publication\'s name or address. githubOrgs: the GitHub organisations whose pull requests and issues count as Midnight work.';
+  // the same rules as normalise in scripts/fetch-sources.mjs
+  const normSource = {
+    github: (v) => { v = v.replace(/^https?:\/\/(www\.)?github\.com\//i, '').split(/[/?#]/)[0].replace(/^@/, ''); return /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/.test(v) ? v : null; },
+    devto: (v) => { v = v.replace(/^https?:\/\/(www\.)?dev\.to\//i, '').split(/[/?#]/)[0].replace(/^@/, ''); return /^[A-Za-z0-9_]{1,30}$/.test(v) ? v : null; },
+    medium: (v) => { const m = v.match(/^(?:https?:\/\/)?(?:www\.)?medium\.com\/@([A-Za-z0-9_.-]{1,40})/i) || v.match(/^(?:https?:\/\/)?([A-Za-z0-9-]{1,40})\.medium\.com\/?$/i) || v.match(/^@?([A-Za-z0-9_.-]{1,40})$/); return m ? m[1] : null; },
+    substack: (v) => {
+      v = v.replace(/\/+$/, '');
+      if (/^[a-z0-9-]{1,63}$/i.test(v)) return `https://${v.toLowerCase()}.substack.com`;
+      if (/\s/.test(v)) return null;
+      try { const u = new URL(/^https?:/i.test(v) ? v : 'https://' + v); return u.protocol === 'https:' && /\.[a-z]{2,}$/i.test(u.hostname) ? `https://${u.hostname.toLowerCase()}` : null; } catch { return null; }
+    },
+  };
+  async function commitSources(values, token) {
+    for (let attempt = 1; ; attempt++) {
+      let sha = null;
+      let file;
+      try {
+        const cur = await gh('/contents/sources.json?ref=main', token);
+        sha = cur.sha;
+        try { file = JSON.parse(b64ToText(cur.content)); } catch { throw Object.assign(new Error('sources.json on GitHub is not valid JSON, so nothing was changed. Fix it on GitHub first.'), { status: 0 }); }
+      } catch (e) {
+        if (e.status !== 404) throw e;
+        file = { _readme: SOURCES_README, githubOrgs: ['midnightntwrk', 'LFDT-Minokawa'] }; // the first save creates the file
+      }
+      const next = { _readme: file._readme || SOURCES_README, ...file, ...values };
+      try {
+        await gh('/contents/sources.json', token, { method: 'PUT', body: JSON.stringify({ message: 'sources: connected accounts', content: textToB64(JSON.stringify(next, null, 2) + '\n'), ...(sha ? { sha } : {}), branch: 'main' }) });
+        return next;
+      } catch (e) {
+        if ((e.status === 409 || e.status === 422) && attempt < 3) continue;
+        throw e;
+      }
+    }
+  }
+  // the first check runs on GitHub right after the save; the owner's page reads its result from the repository
+  let contentWatch = null;
+  function watchContent(before) {
+    if (contentWatch) clearInterval(contentWatch);
+    const until = Date.now() + 8 * 60e3;
+    const status = $b('content-status');
+    contentWatch = setInterval(async () => {
+      if (Date.now() > until) { clearInterval(contentWatch); contentWatch = null; status.textContent = 'The check is taking longer than usual. Reload the page in a few minutes, or see Refresh articles and code under Actions on GitHub.'; return; }
+      try {
+        const file = await ghFile('data/content.json');
+        if (!file || (file.updated || '') === before) return;
+        clearInterval(contentWatch);
+        contentWatch = null;
+        S.content = normContent(file);
+        render();
+        status.textContent = `Checked: ${plural(S.content.items.length, 'item')} about Midnight found.`;
+      } catch { /* not there yet: try again */ }
+    }, 20e3);
+  }
+  function setupSourcesForm() {
+    const dlg = $b('sources-dialog');
+    const form = $b('sources-form');
+    const err = $b('sources-error');
+    const save = $b('sources-save');
+    const close = () => (dlg.close ? dlg.close() : dlg.removeAttribute('open'));
+    $b('sources-open').addEventListener('click', () => {
+      form.reset();
+      err.textContent = '';
+      for (const p of PLATFORM_KEYS) form.elements[p].value = String(S?.sources?.[p] || '');
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+      form.elements.github.focus();
+    });
+    $b('sources-close').addEventListener('click', close);
+    $b('content-more').addEventListener('click', () => { contentAll = true; renderContent(compute(current)); });
+    form.addEventListener('submit', async (evt) => {
+      evt.preventDefault();
+      if (!S || save.disabled) return;
+      err.textContent = '';
+      const values = {};
+      for (const p of PLATFORM_KEYS) {
+        const raw = String(form.elements[p].value || '').trim();
+        if (!raw) { values[p] = ''; continue; }
+        const v = normSource[p](raw);
+        if (!v) { err.textContent = `That ${PLATFORM[p]} ${p === 'substack' ? 'name or address' : 'name'} doesn't look right.`; form.elements[p].focus(); return; }
+        values[p] = v;
+      }
+      const token = ghToken();
+      if (!owner || !token) { err.textContent = 'Sign in as the owner first: Owner sign-in is at the bottom of the page.'; return; }
+      save.disabled = true;
+      save.textContent = 'Saving…';
+      try {
+        const before = S.content?.updated || '';
+        S.sources = await commitSources(values, token);
+        close();
+        render();
+        const any = PLATFORM_KEYS.some((p) => values[p]);
+        $b('content-status').textContent = any ? 'Saved. Checking the accounts now: what is about Midnight shows up here in a minute or two.' : 'Saved. No accounts are connected now.';
+        if (any) watchContent(before);
+      } catch (e2) {
+        if (e2.status === 401) forgetKey();
+        err.textContent = e2.status === 409 || e2.status === 422 ? 'sources.json changed on GitHub at the same moment. Press Save again.' : ghProblem(e2);
+      } finally {
+        save.disabled = false;
+        save.textContent = 'Save';
+      }
+    });
   }
 
   /* ---------- owner mode and GitHub ---------- */
@@ -1575,6 +1821,7 @@
     renderTop(c);
     renderBuilders(c);
     renderEvents(c);
+    renderContent(c);
     if (owner) renderPlan(c);
     renderApp(c);
   }
@@ -1584,6 +1831,7 @@
     setupRefresh();
     setupBuilderForm();
     setupEventForm();
+    setupSourcesForm();
     setupBuilderStrip();
     setupOwner();
     try {
