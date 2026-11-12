@@ -102,11 +102,12 @@
     const site = (p) => fetch(p + q, { cache: bust ? 'no-store' : 'no-cache' }).then((r) => { if (!r.ok) throw new Error(`${p} → HTTP ${r.status}`); return r.json(); });
     const get = owner ? (p) => ghFile(p).catch(() => site(p)) : site;
     const noPlan = { quarters: {}, calendar: [] };
-    const [config, plan, posts, history, mentions, meta, buildersFile, previews] = await Promise.all([
+    const [config, plan, posts, history, mentions, meta, buildersFile, previews, eventsFile] = await Promise.all([
       get('config.json'), owner ? ghFile('plan.json').catch(() => noPlan) : noPlan,
       get('data/posts.json'), get('data/history.json'), get('data/mentions.json'), get('data/meta.json'),
       get('builders.json').catch(() => null),
       get('data/builder-previews.json').catch(() => ({})),
+      get('events.json').catch(() => null),
     ]);
     setZone(config);
     const series = (config.series || []).map((x) => ({ ...x, label: x.label || x.id, phrases: (x.phrases || []).map((p) => String(p).toLowerCase()), kinds: x.kinds || ['original', 'quote', 'thread'] }));
@@ -126,7 +127,7 @@
     themes.set('general', { id: 'general', label: 'General', pillar: null });
     const all = [...posts.posts, ...posts.other];
     return {
-      config, plan, meta, themes, series, buildersFile, builders: normBuilders(buildersFile), previews: previews || {},
+      config, plan, meta, themes, series, buildersFile, builders: normBuilders(buildersFile), previews: previews || {}, events: normEvents(eventsFile),
       seriesById: new Map(series.map((x) => [x.id, x])),
       history: history.days || {},
       mentions: mentions.days || {},
@@ -576,6 +577,25 @@
   }
 
   /* ---------- plan & report ---------- */
+  // the summary's event lines (only once an event is recorded); costs, scores and notes are left out of it
+  function eventLines(P) {
+    const ev = eventStats(P);
+    const line = (k, extra) => {
+      const v = eventKpiValue(k.key, ev);
+      const t = targetFor(k, P);
+      const tt = t != null ? ` (target ${targetText(k, t, P, false)}: ${statusOf(k, v, t, P).label.toLowerCase()})` : '';
+      return `• ${k.label}: ${v == null ? 'no data yet' : k.fmt(v)}${tt}${extra}`;
+    };
+    const mix = ev.held.length ? ` — ${ev.held.length - ev.online} in person, ${ev.online} online${ev.cities.length ? ` (${ev.cities.join(', ')})` : ''}` : '';
+    const more = ev.upcoming.length ? `; ${ev.upcoming.length} more coming up` : '';
+    const extras = [
+      ev.withAtt.length ? `average ${nf.format(Math.round(ev.attended / ev.withAtt.length))} per event` : null,
+      ev.turnout != null ? `turnout ${pct(ev.turnout, 0)}` : null,
+      ev.newShare != null ? `${pct(ev.newShare, 0)} new to Midnight` : null,
+      ev.developers != null ? `${nf.format(ev.developers)} developers` : null,
+    ].filter(Boolean);
+    return [line(EVENT_KPIS[0], mix + more), line(EVENT_KPIS[1], extras.length ? ` — ${extras.join(', ')}` : '')];
+  }
   function summaryText(c) {
     const P = c.P;
     const handle = S.meta.handle ? '@' + S.meta.handle : 'my account';
@@ -607,6 +627,7 @@
         return `• Series, ${g.s.label}: ${g.st.n} posts, median ${g.st.median == null ? 'n/a' : nf.format(Math.round(g.st.median))} impressions${r != null ? ` (${r.toFixed(1)}× loose posts)` : ''}`;
       }),
       line(K('midnightMentions')),
+      ...(S.events.length ? eventLines(P) : []),
     ];
     const top = topPosts(c, 1)[0];
     if (top) out.push('', `Top post: "${snippet(top.text, 140)}" — ${top.metrics.impressions != null ? nf.format(top.metrics.impressions) + ' impressions, ' + pct(eng(top) / top.metrics.impressions) + ' engagement' : nf.format(eng(top)) + ' engagements'} — ${top.url}`);
@@ -621,11 +642,18 @@
     $b('plan-hint').textContent = P.calendar
       ? `Targets for ${P.label} come from plan.json (${P.group === 'Years' ? '"years"' : '"quarters"'}). Counts are judged against pace: the share of the target expected by today.`
       : 'Targets apply to quarter and year views. Pick one in the Period menu to compare against them.';
-    $b('report-targets').replaceChildren(table(['KPI', 'Target', 'Actual', 'Status'], activeKpis().filter((k) => k.type !== 'info').map((k) => {
+    // event rows once any event is recorded or an event target is set
+    const ev = eventStats(P);
+    const evRows = S.events.length || EVENT_KPIS.some((k) => targetFor(k, P) != null) ? EVENT_KPIS.map((k) => {
+      const v = eventKpiValue(k.key, ev);
+      const t = targetFor(k, P);
+      return [k.label, targetText(k, t, P), v == null ? '—' : k.fmt(v), chip(statusOf(k, v, t, P))];
+    }) : [];
+    $b('report-targets').replaceChildren(table(['KPI', 'Target', 'Actual', 'Status'], [...activeKpis().filter((k) => k.type !== 'info').map((k) => {
       const v = kVal(k, c);
       const t = targetFor(k, P);
       return [kLabel(k), targetText(k, t, P), v == null ? '—' : kFmt(k, v), chip(statusOf(k, v, t, P))];
-    }), [2]));
+    }), ...evRows], [2]));
     $b('summary').textContent = summaryText(c);
     $b('copy').textContent = P.group === 'Years' ? 'Copy yearly summary' : P.group === 'Quarters' ? 'Copy quarterly summary' : 'Copy summary';
 
@@ -743,11 +771,15 @@
   }
 
   /* ---------- builders (builders.json, edited by hand or through the form below) ---------- */
+  // an http(s) link with a real domain; Chrome would otherwise accept "not a link" as https://not%20a%20link/
   const safeUrl = (v) => {
     v = String(v || '').trim();
-    if (!v) return null;
+    if (!v || /\s/.test(v)) return null;
     if (!/^[a-z][a-z0-9+.-]*:/i.test(v)) v = 'https://' + v;
-    try { const u = new URL(v); return u.protocol === 'https:' || u.protocol === 'http:' ? u.href : null; } catch { return null; }
+    try {
+      const u = new URL(v);
+      return (u.protocol === 'https:' || u.protocol === 'http:') && /\.[a-z0-9-]{2,}$/i.test(u.hostname) ? u.href : null;
+    } catch { return null; }
   };
   // a handle or username, from "@name", "name" or a profile link on that site
   const handleOf = (v) => {
@@ -881,6 +913,157 @@
     });
     const dlg = $b('profile-dialog');
     dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); }); // a click on the backdrop closes it
+  }
+
+  /* ---------- events held (events.json, added through the Add an event form or edited by hand) ---------- */
+  // Each event's "private" block (cost, currency, rating, partners, notes) shows only in owner mode, and the public copy
+  // of the site leaves it out (scripts/publish.mjs). Targets: "eventsHeld" and "eventAttendees" in plan.json.
+  const EVENT_NUMS = ['registered', 'attended', 'newcomers', 'developers'];
+  const numOrNull = (v) => (v === '' || v == null || !isFinite(Number(v)) ? null : Number(v));
+  function normEvents(file) {
+    return (Array.isArray(file?.events) ? file.events : [])
+      .filter((e) => e && String(e.name || '').trim() && /^\d{4}-\d{2}-\d{2}$/.test(e.date || ''))
+      .map((e) => {
+        const out = { ...e, name: String(e.name).trim(), t: new Date(e.date + 'T12:00') };
+        for (const k of EVENT_NUMS) out[k] = numOrNull(e[k]);
+        return out;
+      })
+      .sort((a, b) => b.t - a.t || a.name.localeCompare(b.name));
+  }
+  const EVENT_KPIS = [
+    { key: 'eventsHeld', label: 'Events held', type: 'count', fmt: (v) => nf.format(v) },
+    { key: 'eventAttendees', label: 'People at events', type: 'count', fmt: (v) => nf.format(v) },
+  ];
+  const isOnline = (e) => e.format === 'Online';
+  const placeOf = (e) => (e.city ? [e.city, e.country].filter(Boolean).join(', ') : isOnline(e) ? e.venue || 'Online' : e.venue || e.country || '—');
+  const money = (v, cur) => {
+    try { return new Intl.NumberFormat('en-GB', { style: 'currency', currency: cur, minimumFractionDigits: 0, maximumFractionDigits: v < 100 ? 2 : 0 }).format(v); } catch { return `${cur ? cur + ' ' : ''}${nf.format(Math.round(v * 100) / 100)}`; }
+  };
+  const endOfToday = () => addDays(startOfDay(new Date()), 1);
+  function eventStats(P) {
+    const inP = P.key === 'all' ? S.events : S.events.filter((e) => e.t >= P.start && e.t < P.end); // All time: every event, also those before the posts begin and those coming up
+    const held = inP.filter((e) => e.t < endOfToday());
+    const withAtt = held.filter((e) => e.attended != null);
+    const both = held.filter((e) => e.attended != null && e.registered);
+    const withNew = held.filter((e) => e.newcomers != null && e.attended);
+    const withDev = held.filter((e) => e.developers != null);
+    const cities = [...new Map(held.filter((e) => !isOnline(e) && e.city).map((e) => [e.city.trim().toLowerCase(), e.city.trim()])).values()];
+    // owner-only: costs per currency; cost per attendee from the events with both a cost and attendance, in one currency
+    const costs = new Map();
+    const perCur = new Map();
+    for (const e of held) {
+      const c = numOrNull(e.private?.cost);
+      if (c == null) continue;
+      const cur = String(e.private.currency || '').toUpperCase();
+      costs.set(cur, (costs.get(cur) || 0) + c);
+      if (e.attended) { const x = perCur.get(cur) || { cost: 0, people: 0 }; x.cost += c; x.people += e.attended; perCur.set(cur, x); }
+    }
+    const ratings = held.map((e) => numOrNull(e.private?.rating)).filter((x) => x != null);
+    const one = costs.size === 1 && perCur.size === 1 ? [...perCur.values()][0] : null;
+    return {
+      inP, held, upcoming: inP.filter((e) => e.t >= endOfToday()), withAtt, attended: sum(withAtt, (e) => e.attended),
+      online: held.filter(isOnline).length,
+      turnout: both.length ? sum(both, (e) => e.attended) / sum(both, (e) => e.registered) : null,
+      turnoutCame: sum(both, (e) => e.attended), turnoutReg: sum(both, (e) => e.registered),
+      newcomers: sum(withNew, (e) => e.newcomers), newShare: withNew.length ? sum(withNew, (e) => e.newcomers) / sum(withNew, (e) => e.attended) : null,
+      developers: withDev.length ? sum(withDev, (e) => e.developers) : null, cities,
+      costs, costPer: one ? one.cost / one.people : null, costCur: one ? [...costs.keys()][0] : '',
+      rating: ratings.length ? sum(ratings, (x) => x) / ratings.length : null, ratings: ratings.length,
+    };
+  }
+  const eventKpiValue = (key, ev) => (key === 'eventsHeld' ? ev.held.length : ev.withAtt.length ? ev.attended : null);
+
+  function renderEvents(c) {
+    const P = c.P;
+    const all = S.events;
+    const tilesEl = $b('events-tiles');
+    const card = $b('events-card');
+    const heldAll = all.filter((e) => e.t < endOfToday()).length;
+    $b('events-sub').textContent = all.length ? `Meetups, workshops and talks · ${nf.format(heldAll)} held in total${all.length > heldAll ? ` · ${nf.format(all.length - heldAll)} coming up` : ''}` : 'Meetups, workshops and talks';
+    tilesEl.classList.toggle('is-empty', !all.length);
+    card.hidden = !all.length;
+    if (!all.length) {
+      tilesEl.replaceChildren(h('div', { class: 'db-builders__empty' }, h('b', { text: 'No events recorded yet.' }), owner ? ' Use Add an event to record a meetup, workshop or talk: what it was, where, and how many people came.' : null));
+      return;
+    }
+    const ev = eventStats(P);
+    // a tile; with a KPI it also gets the owner's target, status and progress, like the tiles at the top
+    const tile = (label, value, meta, k) => {
+      let m = meta; let st = null; let pic = null;
+      if (k) {
+        const v = eventKpiValue(k.key, ev);
+        const t = targetFor(k, P);
+        if (owner) st = chip(statusOf(k, v, t, P));
+        if (t != null) { m = `Target ${targetText(k, t, P)}`; pic = paceBar(v, t, t * pace(P)); }
+      }
+      return h('div', { class: 'db-tile' }, h('p', { class: 'db-tile__k', text: label }), h('p', { class: 'db-tile__v', text: value }), st, pic, h('p', { class: 'db-tile__m', text: m }));
+    };
+    const anyDev = all.some((e) => e.developers != null);
+    const anyCost = owner && all.some((e) => numOrNull(e.private?.cost) != null);
+    const anyRating = owner && all.some((e) => numOrNull(e.private?.rating) != null);
+    const totals = [...ev.costs].map(([cur, v]) => money(v, cur)).join(' + ');
+    const tiles = [
+      tile('Events held', nf.format(ev.held.length),
+        ev.held.length ? `${nf.format(ev.held.length - ev.online)} in person · ${nf.format(ev.online)} online${ev.upcoming.length ? ` · ${nf.format(ev.upcoming.length)} coming up` : ''}` : ev.upcoming.length ? `${nf.format(ev.upcoming.length)} coming up` : 'None in this period', EVENT_KPIS[0]),
+      tile('People at events', ev.withAtt.length ? nf.format(ev.attended) : '—', ev.withAtt.length ? `average ${nf.format(Math.round(ev.attended / ev.withAtt.length))} per event` : 'No attendance added yet', EVENT_KPIS[1]),
+      tile('Turnout', pct(ev.turnout, 0), ev.turnout == null ? 'Needs sign-ups and attendance' : `${nf.format(ev.turnoutCame)} came of ${nf.format(ev.turnoutReg)} registered`),
+      tile('New to Midnight', pct(ev.newShare, 0), ev.newShare == null ? 'Not recorded yet' : `${nf.format(ev.newcomers)} ${ev.newcomers === 1 ? 'person' : 'people'} new to Midnight`),
+      anyDev ? tile('Developers', ev.developers == null ? '—' : nf.format(ev.developers), ev.developers == null ? 'Not recorded in this period' : 'developers at your events') : null,
+      tile('Cities', nf.format(ev.cities.length), ev.cities.length ? snippet(ev.cities.join(', '), 70) : 'No in-person events in this period'),
+      anyCost ? tile('Cost per attendee', ev.costPer == null ? '—' : money(ev.costPer, ev.costCur), ev.costs.size ? `${totals} in total${ev.costs.size > 1 ? ' (mixed currencies)' : ''}` : 'No costs in this period') : null,
+      anyRating ? tile('Feedback', ev.rating == null ? '—' : `${ev.rating.toFixed(1)} / 5`, ev.ratings ? `average of ${ev.ratings} event${ev.ratings === 1 ? '' : 's'}` : 'No scores in this period') : null,
+    ].filter(Boolean);
+    tilesEl.style.setProperty('--ev-n', tiles.length <= 6 ? tiles.length : 4);
+    tilesEl.style.setProperty('--ev-mid', tiles.length % 4 === 0 ? 4 : 3);
+    tilesEl.replaceChildren(...tiles);
+
+    $b('events-title').textContent = `${P.key === 'all' ? 'All events' : `Events in ${P.label}`}${ev.inP.length ? ` (${nf.format(ev.inP.length)})` : ''}`;
+    const n = (v) => (v == null ? '—' : nf.format(v));
+    const rows = ev.inP.map((e) => {
+      const up = e.t >= endOfToday();
+      return [
+        h('span', { class: 'db-ev-date' }, dLong.format(e.t), up ? h('span', { class: 'mx-chip mx-chip--none db-ev-up', text: 'Coming up' }) : null),
+        h('button', { type: 'button', class: 'db-ev-name', text: e.name, 'aria-label': `${e.name}: open the details`, onclick: () => openEvent(e) }),
+        e.type || '—', placeOf(e), n(e.registered), n(e.attended),
+        e.attended != null && e.registered ? pct(e.attended / e.registered, 0) : '—', n(e.newcomers),
+      ];
+    });
+    $b('events-table').replaceChildren(rows.length
+      ? table(['Date', 'Event', 'Type', 'Where', 'Registered', 'Attended', 'Turnout', 'New'], rows, [4, 5, 6, 7])
+      : h('p', { class: 'mx-empty', text: `No events in ${P.label}. ${nf.format(all.length)} recorded in total: choose All time in the Period menu to see them all.` }));
+  }
+
+  function openEvent(e) {
+    const dlg = $b('profile-dialog');
+    const up = e.t >= endOfToday();
+    const where = [e.venue, e.city, e.country].filter(Boolean).join(', ') || (isOnline(e) ? 'Online' : '');
+    const n = (v) => (v == null ? '—' : nf.format(v));
+    const stat = (label, v) => h('div', { class: 'db-ev-stat' }, h('span', { text: label }), h('b', { text: v }));
+    const link = safeUrl(e.link);
+    const pv = e.private || {};
+    const cost = numOrNull(pv.cost);
+    const cur = String(pv.currency || '').toUpperCase();
+    const mine = owner ? [
+      cost != null ? ['Cost', money(cost, cur) + (e.attended ? ` (${money(cost / e.attended, cur)} per attendee)` : '')] : null,
+      numOrNull(pv.rating) != null ? ['Feedback score', `${Number(pv.rating).toFixed(1)} / 5`] : null,
+      pv.partners ? ['Co-hosts or partners', String(pv.partners)] : null,
+      pv.notes ? ['Notes', String(pv.notes)] : null,
+    ].filter(Boolean) : [];
+    $b('profile-body').replaceChildren(h('div', { class: 'db-pf db-ev-pf' },
+      h('div', null,
+        h('h3', { class: 'db-ev-title', id: 'pf-name', text: e.name }),
+        h('p', { class: 'db-builder__meta' }, dLong.format(e.t), e.type ? h('span', { class: 'mx-chip', text: String(e.type) }) : null, h('span', { class: 'mx-chip', text: String(e.format || 'In person') }), up ? h('span', { class: 'mx-chip mx-chip--none', text: 'Coming up' }) : null)),
+      where ? h('p', { class: 'db-ev-where', text: where }) : null,
+      h('div', { class: 'db-ev-stats' }, stat('Registered', n(e.registered)), stat('Attended', n(e.attended)),
+        stat('Turnout', e.attended != null && e.registered ? pct(e.attended / e.registered, 0) : '—'), stat('New to Midnight', n(e.newcomers)),
+        e.developers != null ? stat('Developers', n(e.developers)) : null),
+      e.summary ? h('div', { class: 'db-pf__note' }, h('span', { text: 'What happened' }), h('p', { text: String(e.summary) })) : null,
+      mine.length ? h('div', { class: 'db-pf__note db-ev-private' }, h('span', { text: 'Only you see this' }), ...mine.map(([k, v]) => h('p', null, h('b', { text: `${k}: ` }), v))) : null,
+      h('div', { class: 'db-form__foot' },
+        link ? h('a', { class: 'db-btn', href: link, target: '_blank', rel: 'noopener nofollow', text: 'Open the link ↗' }) : null,
+        owner ? h('button', { type: 'button', class: 'db-btn db-btn--ghost', text: 'Edit', onclick: () => { dlg.close(); openEventForm(e); } }) : null,
+        h('button', { type: 'button', class: 'db-btn db-btn--ghost', text: 'Close', autofocus: true, onclick: () => dlg.close() }))));
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
   }
 
   /* ---------- owner mode and GitHub ---------- */
@@ -1102,6 +1285,132 @@
     });
   }
 
+  /* ---------- the Add an event form: commits events.json itself (owner mode) ---------- */
+  const EVENTS_README = 'Events you ran or spoke at, shown in the Events held section. Add or edit them with Add an event on the page (after Owner sign-in), or edit this file. Dates are YYYY-MM-DD; leave out any number you don\'t know. Each event\'s "private" block (cost, currency, rating, partners, notes) shows only to the owner, and the public copy of the site leaves it out.';
+  const sameEvent = (a, b) => String(a.name || '').trim().toLowerCase() === String(b.name || '').trim().toLowerCase() && a.date === b.date;
+  // adds an event, or replaces the one with the same name and date (and, when editing, the one it was before)
+  async function commitEvent(entry, replaces, token) {
+    for (let attempt = 1; ; attempt++) {
+      let sha = null;
+      let file;
+      try {
+        const cur = await gh('/contents/events.json?ref=main', token);
+        sha = cur.sha;
+        try { file = JSON.parse(b64ToText(cur.content)); } catch { throw Object.assign(new Error('events.json on GitHub is not valid JSON, so nothing was changed. Fix it on GitHub first.'), { status: 0 }); }
+      } catch (e) {
+        if (e.status !== 404) throw e;
+        file = { _readme: EVENTS_README, events: [] }; // the first event creates the file
+      }
+      const old = Array.isArray(file.events) ? file.events : [];
+      const replaced = (x) => sameEvent(x, entry) || (replaces && sameEvent(x, replaces));
+      const updated = old.some(replaced);
+      const events = [...old.filter((x) => !replaced(x)), entry].sort((a, b) => String(b.date).localeCompare(String(a.date)) || String(a.name).localeCompare(String(b.name)));
+      const next = { ...file, events };
+      try {
+        await gh('/contents/events.json', token, { method: 'PUT', body: JSON.stringify({ message: `events: ${updated ? 'update' : 'add'} ${entry.name} (${entry.date})`, content: textToB64(JSON.stringify(next, null, 2) + '\n'), ...(sha ? { sha } : {}), branch: 'main' }) });
+        return { file: next, updated };
+      } catch (e) {
+        if ((e.status === 409 || e.status === 422) && attempt < 3) continue; // changed on GitHub in between: read again
+        throw e;
+      }
+    }
+  }
+  let editing = null; // the event being edited, or null when adding one
+  function openEventForm(e) {
+    const dlg = $b('event-dialog');
+    const form = $b('event-form');
+    const f = form.elements;
+    form.reset();
+    editing = e || null;
+    $b('event-error').textContent = '';
+    $b('event-form-title').textContent = e ? 'Edit the event' : 'Add an event';
+    $b('event-private-note').textContent = S?.config?.publicRepo
+      ? 'They stay in your private repository and never reach the public site.'
+      : 'They are hidden on the page. This repository is public, though, so anyone can still read them in events.json.';
+    const pv = e?.private || {};
+    const vals = e
+      ? { name: e.name, date: e.date, type: e.type, format: e.format || 'In person', venue: e.venue, city: e.city, country: e.country, registered: e.registered, attended: e.attended, newcomers: e.newcomers, developers: e.developers, summary: e.summary, link: e.link, cost: pv.cost, currency: pv.currency, rating: pv.rating, partners: pv.partners, notes: pv.notes }
+      : { date: dayKey(new Date()), format: 'In person', currency: store.get('mx-currency') || '' };
+    for (const [k, v] of Object.entries(vals)) {
+      const el = f[k];
+      if (v == null || !el) continue;
+      if (el.tagName === 'SELECT' && ![...el.options].some((o) => o.value === String(v))) el.append(h('option', { text: String(v) })); // a type typed into events.json by hand
+      el.value = String(v);
+    }
+    $b('event-save').disabled = false;
+    $b('event-save').textContent = 'Save the event';
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+    f.name.focus();
+  }
+  function setupEventForm() {
+    const dlg = $b('event-dialog');
+    const form = $b('event-form');
+    const err = $b('event-error');
+    const save = $b('event-save');
+    const close = () => (dlg.close ? dlg.close() : dlg.removeAttribute('open'));
+    $b('event-add').addEventListener('click', () => openEventForm(null));
+    $b('event-close').addEventListener('click', close);
+    form.addEventListener('submit', async (evt) => {
+      evt.preventDefault();
+      if (!S || save.disabled) return;
+      const f = form.elements;
+      const v = (name) => String(f[name].value || '').trim();
+      const fail = (msg, field) => { err.textContent = msg; if (field) f[field].focus(); };
+      err.textContent = '';
+      if (!v('name')) return fail('Add the event name.', 'name');
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(v('date'))) return fail('Add the date.', 'date');
+      const nums = {};
+      for (const [k, label] of [['registered', 'Registered'], ['attended', 'Attended'], ['newcomers', 'New to Midnight'], ['developers', 'Developers']]) {
+        if (!v(k)) continue;
+        const x = Number(v(k));
+        if (!Number.isInteger(x) || x < 0) return fail(`${label} should be a whole number.`, k);
+        nums[k] = x;
+      }
+      for (const [k, label] of [['newcomers', 'New to Midnight'], ['developers', 'Developers']]) {
+        if (nums[k] != null && nums.attended != null && nums[k] > nums.attended) return fail(`${label} can't be more than Attended.`, k);
+      }
+      const link = v('link') ? safeUrl(v('link')) : null;
+      if (v('link') && !link) return fail("That link doesn't look right.", 'link');
+      const priv = {};
+      if (v('cost')) { const x = Number(v('cost')); if (!isFinite(x) || x < 0) return fail('Cost should be a number.', 'cost'); priv.cost = x; }
+      if (v('currency')) { if (!/^[A-Za-z]{3}$/.test(v('currency'))) return fail('Currency should be a 3-letter code, like USD or ZAR.', 'currency'); priv.currency = v('currency').toUpperCase(); }
+      if (priv.cost != null && !priv.currency) return fail('Add the currency of the cost, like USD or ZAR.', 'currency');
+      if (v('rating')) { const x = Number(v('rating')); if (!(x >= 1 && x <= 5)) return fail('The feedback score goes from 1 to 5.', 'rating'); priv.rating = Math.round(x * 10) / 10; }
+      if (v('partners')) priv.partners = v('partners');
+      if (v('notes')) priv.notes = v('notes');
+      const token = ghToken();
+      if (!owner || !token) return fail('Sign in as the owner first: Owner sign-in is at the bottom of the page.');
+
+      const entry = { name: v('name'), date: v('date') };
+      for (const k of ['type', 'format', 'venue', 'city', 'country']) if (v(k)) entry[k] = v(k);
+      Object.assign(entry, nums);
+      if (v('summary')) entry.summary = v('summary');
+      if (link) entry.link = link;
+      if (Object.keys(priv).length) entry.private = priv;
+
+      save.disabled = true;
+      save.textContent = 'Saving…';
+      try {
+        const res = await commitEvent(entry, editing, token);
+        if (priv.currency) store.set('mx-currency', priv.currency);
+        S.events = normEvents(res.file);
+        close();
+        const c = compute(current);
+        renderEvents(c);
+        renderPlan(c);
+        const t = new Date(entry.date + 'T12:00');
+        const outside = current.key !== 'all' && !(t >= current.start && t < current.end);
+        $b('events-status').textContent = `${res.updated ? 'Updated' : 'Added'} ${entry.name}. Visitors see it in a minute or two.${outside ? ` It's dated ${dLong.format(t)}, outside ${current.label}: choose All time in the Period menu to see it.` : ''}`;
+      } catch (e2) {
+        if (e2.status === 401) forgetKey();
+        fail(e2.status === 409 || e2.status === 422 ? 'events.json changed on GitHub at the same moment. Press Save the event again.' : ghProblem(e2));
+      } finally {
+        save.disabled = false;
+        save.textContent = 'Save the event';
+      }
+    });
+  }
+
   /* ---------- refresh: reload the saved data now, or watch for a new X fetch ---------- */
   let watch = null;
   function fillPeriods(selects) {
@@ -1210,7 +1519,8 @@
       h('span', { text: at ? `Last refresh ${zoneStamp(at, true)}${owner ? ` (${m.lastRun.mode})` : ''}.${owner && spend != null ? ` Estimated X API spend this month: $${spend.toFixed(2)}.` : ''}` : 'Not refreshed yet.' }),
       h('span', { text: `Data starts ${dLong.format(S.dataStart)}. ${nf.format(S.posts.length)} Midnight posts tracked, out of ${nf.format(S.posts.length + S.other.length)} posts seen in total. Engagement rate = (likes + replies + reposts + quotes) ÷ impressions.` }),
       h('span', null, `Community planning tool${profile.role ? ` by ${/^[aeiou]/i.test(profile.role) ? 'an' : 'a'} ${profile.role}` : ''}. Not an official Midnight Network or Midnight Foundation publication. Midnight and the Midnight logo are trademarks of their owners.`,
-        owner && repo ? h('span', null, ' · ', h('a', { href: `https://github.com/${repo}/edit/main/plan.json`, target: '_blank', rel: 'noopener', text: 'Edit plan.json' }), ' · ', h('a', { href: `https://github.com/${repo}/edit/main/builders.json`, target: '_blank', rel: 'noopener', text: 'Edit builders.json' })) : null),
+        owner && repo ? h('span', null, ' · ', h('a', { href: `https://github.com/${repo}/edit/main/plan.json`, target: '_blank', rel: 'noopener', text: 'Edit plan.json' }), ' · ', h('a', { href: `https://github.com/${repo}/edit/main/builders.json`, target: '_blank', rel: 'noopener', text: 'Edit builders.json' }),
+          S.events.length ? h('span', null, ' · ', h('a', { href: `https://github.com/${repo}/edit/main/events.json`, target: '_blank', rel: 'noopener', text: 'Edit events.json' })) : null) : null),
       owner
         ? h('span', { class: 'db-foot__owner' }, 'Signed in as the owner on this browser. ', h('button', { type: 'button', class: 'db-textbtn', onclick: signOut, text: 'Sign out' }))
         : h('span', { class: 'db-foot__owner' }, ownerNote ? `${ownerNote} ` : '', h('button', { type: 'button', class: 'db-textbtn', onclick: openOwner, text: 'Owner sign-in' })));
@@ -1264,6 +1574,7 @@
     renderTrends(c);
     renderTop(c);
     renderBuilders(c);
+    renderEvents(c);
     if (owner) renderPlan(c);
     renderApp(c);
   }
@@ -1272,6 +1583,7 @@
     setupTabs();
     setupRefresh();
     setupBuilderForm();
+    setupEventForm();
     setupBuilderStrip();
     setupOwner();
     try {

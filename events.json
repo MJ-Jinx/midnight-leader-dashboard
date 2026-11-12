@@ -1,0 +1,4 @@
+{
+  "_readme": "Events you ran or spoke at, shown in the Events held section. Add or edit them with Add an event on the page (after Owner sign-in), or edit this file. Dates are YYYY-MM-DD; leave out any number you don't know. Each event's \"private\" block (cost, currency, rating, partners, notes) shows only to the owner, and the public copy of the site leaves it out.",
+  "events": []
+}

@@ -50,6 +50,7 @@
       <a href="#overview">KPIs</a>
       <a href="#trends">Trends</a>
       <a href="#builders">Builders</a>
+      <a href="#events">Events</a>
       <a href="#series">Series</a>
       <a href="#plan" data-owner>Plan &amp; report</a>
       <a href="#posts">All posts</a>
@@ -145,6 +146,23 @@
     </div>
   </section>
 
+  <section class="db-section" id="events" aria-labelledby="events-h">
+    <div class="db-wrap">
+      <div class="db-sh-row">
+        <h2 class="db-sh" id="events-h">Events held <span data-bind="events-sub">Meetups, workshops and talks</span></h2>
+        <div class="db-sh-actions">
+          <button type="button" class="db-btn db-btn--ghost db-btn--sm" data-bind="event-add" data-owner>Add an event</button>
+        </div>
+      </div>
+      <p class="db-status db-builders__status" data-bind="events-status" role="status" aria-live="polite"></p>
+      <div class="db-ev-tiles" data-bind="events-tiles"></div>
+      <article class="db-card" data-bind="events-card">
+        <header class="db-card__head"><h3 data-bind="events-title">Events in this period</h3><p>Click an event for its details.<span data-owner> Cost, co-hosts, feedback and notes show only to you.</span></p></header>
+        <div class="db-scroll" data-bind="events-table"></div>
+      </article>
+    </div>
+  </section>
+
   <section class="db-section" id="series" aria-labelledby="series-h">
     <div class="db-wrap">
       <h2 class="db-sh" id="series-h">Series <span>Every series over its full run, whatever the Period menu says</span></h2>
@@ -237,6 +255,43 @@
     <footer class="db-form__foot">
       <button type="button" class="db-btn db-btn--ghost" data-bind="builder-close">Close</button>
       <button type="submit" class="db-btn" data-bind="builder-save">Add the builder</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="db-dialog" data-bind="event-dialog" aria-labelledby="ed-h">
+  <form class="db-form" data-bind="event-form" novalidate>
+    <header class="db-form__head">
+      <h3 id="ed-h" data-bind="event-form-title">Add an event</h3>
+      <p>Saved to the dashboard straight away. Everything above "Only you see these" is on the public page.</p>
+    </header>
+    <div class="db-form__grid">
+      <label class="db-field db-field--wide"><span>Event name *</span><input name="name" required maxlength="100" autocomplete="off"></label>
+      <label class="db-field"><span>Date *</span><input name="date" type="date" required></label>
+      <label class="db-field"><span>Type</span><select name="type"><option value="">—</option><option>Meetup</option><option>Workshop</option><option>Hackathon</option><option>Talk or panel</option><option>X Space or AMA</option><option>Conference or expo</option><option>Other</option></select></label>
+      <label class="db-field"><span>Format</span><select name="format"><option>In person</option><option>Online</option><option>Hybrid</option></select></label>
+      <label class="db-field"><span>Venue or platform</span><input name="venue" maxlength="100" placeholder="e.g. a venue name, X Spaces, Zoom" autocomplete="off"></label>
+      <label class="db-field"><span>City</span><input name="city" maxlength="60" autocomplete="off"></label>
+      <label class="db-field"><span>Country</span><input name="country" maxlength="60" autocomplete="off"></label>
+      <p class="db-form__sub db-field--wide">Numbers (leave empty if you don't know)</p>
+      <label class="db-field"><span>Registered</span><input name="registered" type="number" min="0" step="1" inputmode="numeric" placeholder="Sign-ups or RSVPs"></label>
+      <label class="db-field"><span>Attended</span><input name="attended" type="number" min="0" step="1" inputmode="numeric" placeholder="People who came"></label>
+      <label class="db-field"><span>New to Midnight</span><input name="newcomers" type="number" min="0" step="1" inputmode="numeric" placeholder="Of those who came"></label>
+      <label class="db-field"><span>Developers</span><input name="developers" type="number" min="0" step="1" inputmode="numeric" placeholder="Of those who came"></label>
+      <label class="db-field db-field--wide"><span>What happened</span><textarea name="summary" rows="2" maxlength="280" placeholder="One or two lines: the topic, what people built or learned"></textarea></label>
+      <label class="db-field db-field--wide"><span>Link</span><input name="link" type="url" placeholder="Event page, recap post or photos" autocomplete="off"></label>
+      <p class="db-form__sub db-field--wide">Only you see these</p>
+      <p class="db-status db-field--wide" data-bind="event-private-note"></p>
+      <label class="db-field"><span>Cost</span><input name="cost" type="number" min="0" step="0.01" inputmode="decimal"></label>
+      <label class="db-field"><span>Currency</span><input name="currency" maxlength="3" placeholder="e.g. USD, ZAR" autocomplete="off"></label>
+      <label class="db-field"><span>Feedback score (out of 5)</span><input name="rating" type="number" min="1" max="5" step="0.1" inputmode="decimal"></label>
+      <label class="db-field"><span>Co-hosts or partners</span><input name="partners" maxlength="160" autocomplete="off"></label>
+      <label class="db-field db-field--wide"><span>Notes</span><textarea name="notes" rows="2" maxlength="500" placeholder="Follow-ups, what to change next time"></textarea></label>
+    </div>
+    <p class="db-form__error" role="alert" data-bind="event-error"></p>
+    <footer class="db-form__foot">
+      <button type="button" class="db-btn db-btn--ghost" data-bind="event-close">Close</button>
+      <button type="submit" class="db-btn" data-bind="event-save">Save the event</button>
     </footer>
   </form>
 </dialog>
