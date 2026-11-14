@@ -1,6 +1,101 @@
 {
  "posts": [
   {
+   "id": "2121552326704181375",
+   "created_at": "2026-11-14T10:34:25.000Z",
+   "text": "@NorthStarDEX @MidnightNtwrk It took a while but you are listed now cheers",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "NorthStarDEX"
+    },
+    {
+     "type": "reply",
+     "author": "MidnightNtwrk"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2121552326704181375",
+   "lang": "en",
+   "mentions": [
+    "NorthStarDEX",
+    "MidnightNtwrk"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 24,
+    "likes": 2,
+    "replies": 1,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-14T11:24:46.427Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2121400958077018128",
+   "created_at": "2026-11-14T00:32:56.000Z",
+   "text": "Well @VINPassport is close to completion for Mainnet and then I will be working on landing the first pilot client.\n\n@Noctis_Zone received some cool updates and the @Cardano side is done and next is @MidnightNtwrk side of the platform to be wrapped up.\n\nShout-out to @ODATANO_V4 as well",
+   "kind": "thread",
+   "refs": [
+    {
+     "type": "thread",
+     "author": "Jinx_MJ_K"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2121400958077018128",
+   "lang": "en",
+   "mentions": [
+    "VINPassport",
+    "Noctis_Zone",
+    "Cardano",
+    "MidnightNtwrk",
+    "ODATANO_V4"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 36,
+    "likes": 4,
+    "replies": 0,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-14T11:24:46.427Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk"
+    ],
+    "themes": [
+     "amplify"
+    ],
+    "local": false
+   }
+  },
+  {
    "id": "2120898733764468751",
    "created_at": "2026-11-12T15:17:17.000Z",
    "text": "@MidnightNtwrk Always! \n\nOne team One dream",
@@ -20,7 +115,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 35,
+    "impressions": 38,
     "likes": 2,
     "replies": 0,
     "reposts": 0,
@@ -65,10 +160,10 @@
     "https://twitter.com/MidnightNtwrk/status/2120879542302573015"
    ],
    "metrics": {
-    "impressions": 636,
-    "likes": 29,
+    "impressions": 707,
+    "likes": 33,
     "replies": 1,
-    "reposts": 2,
+    "reposts": 3,
     "quotes": 0,
     "bookmarks": 0
    },
@@ -227,7 +322,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 20,
+    "impressions": 21,
     "likes": 1,
     "replies": 1,
     "reposts": 0,
@@ -325,7 +420,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 20,
+    "impressions": 21,
     "likes": 1,
     "replies": 0,
     "reposts": 0,
@@ -378,7 +473,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 31,
+    "impressions": 32,
     "likes": 1,
     "replies": 1,
     "reposts": 0,
@@ -522,8 +617,8 @@
     "https://mj-jinx.github.io/cardano-midnight-starter-kit/?v=2"
    ],
    "metrics": {
-    "impressions": 764,
-    "likes": 35,
+    "impressions": 807,
+    "likes": 37,
     "replies": 6,
     "reposts": 7,
     "quotes": 3,
@@ -631,7 +726,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 41,
+    "impressions": 42,
     "likes": 0,
     "replies": 0,
     "reposts": 0,
@@ -685,7 +780,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 77,
+    "impressions": 78,
     "likes": 3,
     "replies": 1,
     "reposts": 0,
@@ -789,7 +884,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 153,
+    "impressions": 158,
     "likes": 4,
     "replies": 2,
     "reposts": 0,
@@ -29933,49 +30028,6 @@
    }
   },
   {
-   "id": "2048730213337772396",
-   "created_at": "2026-04-27T11:45:21.000Z",
-   "text": "The real world version\nNow make it digital.\n\nMidnight uses this same idea to let you prove things about yourself on the blockchain — without revealing your personal data.\n\nAge. Income. Citizenship. Credit score.\nProved. Never shown.\n\nSource: https://t.co/pcVAtPY1sh\n\n4/10",
-   "kind": "thread",
-   "refs": [
-    {
-     "type": "thread",
-     "author": "Jinx_MJ_K"
-    }
-   ],
-   "url": "https://x.com/Jinx_MJ_K/status/2048730213337772396",
-   "lang": "en",
-   "mentions": [],
-   "hashtags": [],
-   "cashtags": [],
-   "urls": [
-    "https://docs.midnight.network/blog/web3-intro-what-are-zkps"
-   ],
-   "metrics": {
-    "impressions": 25,
-    "likes": 3,
-    "replies": 1,
-    "reposts": 0,
-    "quotes": 0,
-    "bookmarks": 0
-   },
-   "source": "api",
-   "first_seen": "2026-11-11T05:31:20.918Z",
-   "class": {
-    "midnight": true,
-    "score": 3,
-    "confidence": "high",
-    "review": false,
-    "reasons": [
-     "midnight.network"
-    ],
-    "themes": [
-     "general"
-    ],
-    "local": false
-   }
-  },
-  {
    "id": "2048730216907092241",
    "created_at": "2026-04-27T11:45:21.000Z",
    "text": "The three rules of ZK\nEvery ZK proof follows three rules:\n\n- Completeness — if it's true, you can prove it\n- Soundness — if it's false, you can't fake it\n- Zero-knowledge — the verifier learns nothing except \"yes, it's true\"\n\nThree rules. Thousands of use cases. One Midnight network.\n\n5/10",
@@ -30015,6 +30067,49 @@
     "themes": [
      "build",
      "education"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2048730213337772396",
+   "created_at": "2026-04-27T11:45:21.000Z",
+   "text": "The real world version\nNow make it digital.\n\nMidnight uses this same idea to let you prove things about yourself on the blockchain — without revealing your personal data.\n\nAge. Income. Citizenship. Credit score.\nProved. Never shown.\n\nSource: https://t.co/pcVAtPY1sh\n\n4/10",
+   "kind": "thread",
+   "refs": [
+    {
+     "type": "thread",
+     "author": "Jinx_MJ_K"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2048730213337772396",
+   "lang": "en",
+   "mentions": [],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [
+    "https://docs.midnight.network/blog/web3-intro-what-are-zkps"
+   ],
+   "metrics": {
+    "impressions": 25,
+    "likes": 3,
+    "replies": 1,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-11T05:31:20.918Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "midnight.network"
+    ],
+    "themes": [
+     "general"
     ],
     "local": false
    }
@@ -43842,6 +43937,76 @@
  ],
  "other": [
   {
+   "id": "2121484758287110534",
+   "created_at": "2026-11-14T06:05:56.000Z",
+   "kind": "thread"
+  },
+  {
+   "id": "2121462471068356936",
+   "created_at": "2026-11-14T04:37:22.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2121461147241271790",
+   "created_at": "2026-11-14T04:32:07.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2121460486428651791",
+   "created_at": "2026-11-14T04:29:29.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2121459713246372083",
+   "created_at": "2026-11-14T04:26:25.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2121455652790751594",
+   "created_at": "2026-11-14T04:10:17.000Z",
+   "kind": "thread"
+  },
+  {
+   "id": "2121422647288566095",
+   "created_at": "2026-11-14T01:59:07.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2121400061905301783",
+   "created_at": "2026-11-14T00:29:23.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2121399673667863006",
+   "created_at": "2026-11-14T00:27:50.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2121399480004341899",
+   "created_at": "2026-11-14T00:27:04.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2121398742339526912",
+   "created_at": "2026-11-14T00:24:08.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2121239577990176853",
+   "created_at": "2026-11-13T13:51:40.000Z",
+   "kind": "thread"
+  },
+  {
+   "id": "2121237712921649398",
+   "created_at": "2026-11-13T13:44:16.000Z",
+   "kind": "quote"
+  },
+  {
+   "id": "2121237715886972980",
+   "created_at": "2026-11-13T13:44:16.000Z",
+   "kind": "reply"
+  },
+  {
    "id": "2121149962990076011",
    "created_at": "2026-11-13T07:55:34.000Z",
    "kind": "reply"
@@ -53287,12 +53452,12 @@
    "kind": "reply"
   },
   {
-   "id": "2051283303081337323",
+   "id": "2051283306449371342",
    "created_at": "2026-05-04T12:50:25.000Z",
    "kind": "thread"
   },
   {
-   "id": "2051283306449371342",
+   "id": "2051283303081337323",
    "created_at": "2026-05-04T12:50:25.000Z",
    "kind": "thread"
   },
@@ -53302,14 +53467,14 @@
    "kind": "thread"
   },
   {
-   "id": "2051283294290067723",
-   "created_at": "2026-05-04T12:50:23.000Z",
-   "kind": "quote"
-  },
-  {
    "id": "2051283296865423534",
    "created_at": "2026-05-04T12:50:23.000Z",
    "kind": "thread"
+  },
+  {
+   "id": "2051283294290067723",
+   "created_at": "2026-05-04T12:50:23.000Z",
+   "kind": "quote"
   },
   {
    "id": "2051237795289833891",
@@ -55302,12 +55467,12 @@
    "kind": "thread"
   },
   {
-   "id": "2044755866927440289",
+   "id": "2044755870794522756",
    "created_at": "2026-04-16T12:32:43.000Z",
    "kind": "thread"
   },
   {
-   "id": "2044755870794522756",
+   "id": "2044755866927440289",
    "created_at": "2026-04-16T12:32:43.000Z",
    "kind": "thread"
   },
@@ -60462,12 +60627,12 @@
    "kind": "reply"
   },
   {
-   "id": "2032447391614566431",
+   "id": "2032447388670107837",
    "created_at": "2026-03-13T13:23:13.000Z",
    "kind": "reply"
   },
   {
-   "id": "2032447388670107837",
+   "id": "2032447391614566431",
    "created_at": "2026-03-13T13:23:13.000Z",
    "kind": "reply"
   },
@@ -61582,12 +61747,12 @@
    "kind": "thread"
   },
   {
-   "id": "2031588704276578374",
+   "id": "2031588701890060746",
    "created_at": "2026-03-11T04:31:06.000Z",
    "kind": "thread"
   },
   {
-   "id": "2031588701890060746",
+   "id": "2031588704276578374",
    "created_at": "2026-03-11T04:31:06.000Z",
    "kind": "thread"
   },
@@ -64877,12 +65042,12 @@
    "kind": "reply"
   },
   {
-   "id": "2030078376212639866",
+   "id": "2030078375277252936",
    "created_at": "2026-03-07T00:29:36.000Z",
    "kind": "reply"
   },
   {
-   "id": "2030078375277252936",
+   "id": "2030078376212639866",
    "created_at": "2026-03-07T00:29:36.000Z",
    "kind": "reply"
   },
@@ -75802,14 +75967,14 @@
    "kind": "reply"
   },
   {
-   "id": "1976592151145296314",
-   "created_at": "2025-10-10T10:14:26.000Z",
-   "kind": "reply"
-  },
-  {
    "id": "1976592149417169150",
    "created_at": "2025-10-10T10:14:26.000Z",
    "kind": "repost"
+  },
+  {
+   "id": "1976592151145296314",
+   "created_at": "2025-10-10T10:14:26.000Z",
+   "kind": "reply"
   },
   {
    "id": "1976570462965735751",
@@ -80807,14 +80972,14 @@
    "kind": "reply"
   },
   {
-   "id": "1942909157641797788",
-   "created_at": "2025-07-09T11:30:15.000Z",
-   "kind": "quote"
-  },
-  {
    "id": "1942909156605780293",
    "created_at": "2025-07-09T11:30:15.000Z",
    "kind": "repost"
+  },
+  {
+   "id": "1942909157641797788",
+   "created_at": "2025-07-09T11:30:15.000Z",
+   "kind": "quote"
   },
   {
    "id": "1942907001794699712",
@@ -92032,12 +92197,12 @@
    "kind": "reply"
   },
   {
-   "id": "1885325357483778514",
+   "id": "1885325357420806402",
    "created_at": "2025-01-31T13:52:47.000Z",
    "kind": "reply"
   },
   {
-   "id": "1885325357420806402",
+   "id": "1885325357483778514",
    "created_at": "2025-01-31T13:52:47.000Z",
    "kind": "reply"
   },
