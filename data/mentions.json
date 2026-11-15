@@ -21,8 +21,12 @@
    "midnight": 0
   },
   "2026-11-14": {
-   "total": 3,
-   "midnight": 1
+   "total": 6,
+   "midnight": 2
+  },
+  "2026-11-15": {
+   "total": 2,
+   "midnight": 0
   }
  }
 }
