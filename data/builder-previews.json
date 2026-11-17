@@ -16,5 +16,11 @@
     "url": "https://passport.vin/",
     "file": "assets/builders/vinpassport.jpg",
     "takenAt": "2026-11-17T05:59:19.603Z"
+  },
+  "noctis zone": {
+    "name": "Noctis Zone",
+    "url": "https://noctis.zone/",
+    "file": "assets/builders/noctis-zone.jpg",
+    "takenAt": "2026-11-17T06:01:20.949Z"
   }
 }
