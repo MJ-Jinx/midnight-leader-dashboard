@@ -39,6 +39,18 @@
         "projectX": "Nullifierio",
         "website": "https://nullifier.io/"
       }
+    },
+    {
+      "name": "VINPassport",
+      "since": "2026-07-01",
+      "stage": "Building",
+      "building": "Issue a Euro 7-ready passport with every new vehicle type. Any buyer checks it with a scan, and every reader, from buyer",
+      "links": {
+        "userX": "Jinx_MJ_K",
+        "projectX": "VINPassport",
+        "linkedin": "https://www.linkedin.com/company/vinpassport/",
+        "website": "https://passport.vin/"
+      }
     }
   ]
 }
