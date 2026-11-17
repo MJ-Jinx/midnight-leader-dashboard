@@ -1,14 +1,20 @@
 {
+  "the hall": {
+    "name": "The Hall",
+    "url": "https://halfhand.app/",
+    "file": "assets/builders/the-hall.jpg",
+    "takenAt": "2026-11-12T02:50:35.103Z"
+  },
   "nullifier": {
     "name": "Nullifier",
     "url": "https://nullifier.io/",
     "file": "assets/builders/nullifier.jpg",
     "takenAt": "2026-11-12T02:36:00.623Z"
   },
-  "the hall": {
-    "name": "The Hall",
-    "url": "https://halfhand.app/",
-    "file": "assets/builders/the-hall.jpg",
-    "takenAt": "2026-11-12T02:50:35.103Z"
+  "vinpassport": {
+    "name": "VINPassport",
+    "url": "https://passport.vin/",
+    "file": "assets/builders/vinpassport.jpg",
+    "takenAt": "2026-11-17T05:59:19.603Z"
   }
 }
