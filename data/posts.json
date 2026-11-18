@@ -1,6 +1,309 @@
 {
  "posts": [
   {
+   "id": "2122998427781144606",
+   "created_at": "2026-11-18T10:20:43.000Z",
+   "text": "RT @Jinx_MJ_K: Heading to @binance Blockchain Week in Bangkok (28–29 Nov) with the @MidnightNtwrk and @midnightfdn team.\n\nI'm there for two…",
+   "kind": "repost",
+   "refs": [
+    {
+     "type": "repost",
+     "author": "Jinx_MJ_K"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2122998427781144606",
+   "lang": "en",
+   "mentions": [
+    "Jinx_MJ_K",
+    "binance",
+    "MidnightNtwrk",
+    "midnightfdn"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 0,
+    "likes": 0,
+    "replies": 0,
+    "reposts": 2,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-18T12:58:29.564Z",
+   "class": {
+    "midnight": true,
+    "score": 6,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk",
+     "@midnightfdn"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2122958889503408189",
+   "created_at": "2026-11-18T07:43:36.000Z",
+   "text": "@NightSwapLabs @binance @MidnightNtwrk @midnightfdn @BNBCHAIN @G_Man_Crypto @evarodriguez_m @jackoconnorx Thanks 👍🏽 will do",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "NightSwapLabs"
+    },
+    {
+     "type": "reply",
+     "author": "binance"
+    },
+    {
+     "type": "reply",
+     "author": "MidnightNtwrk"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2122958889503408189",
+   "lang": "en",
+   "mentions": [
+    "NightSwapLabs",
+    "binance",
+    "MidnightNtwrk",
+    "midnightfdn",
+    "BNBCHAIN",
+    "G_Man_Crypto",
+    "evarodriguez_m",
+    "jackoconnorx"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 32,
+    "likes": 1,
+    "replies": 0,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-18T12:58:29.564Z",
+   "class": {
+    "midnight": true,
+    "score": 6,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk",
+     "@midnightfdn"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2122877804190871603",
+   "created_at": "2026-11-18T02:21:24.000Z",
+   "text": "@tadartot @vesprwallet @MidnightNtwrk @tadartot in the Midnight Server we have a person that deals with Claim issues if you want just tag me in the server (JINX) and I will tag the correct person for you.",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "tadartot"
+    },
+    {
+     "type": "reply",
+     "author": "vesprwallet"
+    },
+    {
+     "type": "reply",
+     "author": "MidnightNtwrk"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2122877804190871603",
+   "lang": "en",
+   "mentions": [
+    "tadartot",
+    "vesprwallet",
+    "MidnightNtwrk",
+    "tadartot"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 11,
+    "likes": 0,
+    "replies": 0,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-18T12:58:29.564Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2122860329944432646",
+   "created_at": "2026-11-18T01:11:58.000Z",
+   "text": "Heading to @binance Blockchain Week in Bangkok (28–29 Nov) with the @MidnightNtwrk and @midnightfdn team.\n\nI'm there for two things:\n• Growing the community\n• Builders, not just devs. Got an idea you want to build with privacy on Midnight? Let's talk.\n\n@BNBCHAIN community, come find us 👋",
+   "kind": "original",
+   "refs": [],
+   "url": "https://x.com/Jinx_MJ_K/status/2122860329944432646",
+   "lang": "en",
+   "mentions": [
+    "binance",
+    "MidnightNtwrk",
+    "midnightfdn",
+    "BNBCHAIN"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 628,
+    "likes": 35,
+    "replies": 5,
+    "reposts": 2,
+    "quotes": 2,
+    "bookmarks": 1
+   },
+   "source": "api",
+   "first_seen": "2026-11-18T12:58:29.564Z",
+   "class": {
+    "midnight": true,
+    "score": 6,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk",
+     "@midnightfdn"
+    ],
+    "themes": [
+     "build",
+     "education"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2122850673989652662",
+   "created_at": "2026-11-18T00:33:35.000Z",
+   "text": "@OneAmXYZ @XRP @Cardano @Islandghostxrp @MidnightNtwrk Keep up the good work if you guys can be the one wallet that a builder can use that allows many other chains to use the services that is what I call a great onboarding tool and taking away the hurdles for the new comers! https://t.co/glY4cx4ABS",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "OneAmXYZ"
+    },
+    {
+     "type": "reply",
+     "author": "XRP"
+    },
+    {
+     "type": "reply",
+     "author": "Cardano"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2122850673989652662",
+   "lang": "en",
+   "mentions": [
+    "OneAmXYZ",
+    "XRP",
+    "Cardano",
+    "Islandghostxrp",
+    "MidnightNtwrk"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [
+    "https://x.com/Jinx_MJ_K/status/2122850673989652662/photo/1"
+   ],
+   "metrics": {
+    "impressions": 45,
+    "likes": 0,
+    "replies": 0,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-18T12:58:29.564Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk"
+    ],
+    "themes": [
+     "build"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2122835621366714681",
+   "created_at": "2026-11-17T23:33:47.000Z",
+   "text": "RT @MidnightNtwrk: What does it take to bring regulated banking onto public blockchain infrastructure?\n\nMonument's launch on Midnight is a…",
+   "kind": "repost",
+   "refs": [
+    {
+     "type": "repost",
+     "author": "MidnightNtwrk"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2122835621366714681",
+   "lang": "en",
+   "mentions": [
+    "MidnightNtwrk"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 2,
+    "likes": 0,
+    "replies": 0,
+    "reposts": 234,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-18T12:58:29.564Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk"
+    ],
+    "themes": [
+     "amplify"
+    ],
+    "local": false
+   }
+  },
+  {
    "id": "2122581032616747385",
    "created_at": "2026-11-17T06:42:08.000Z",
    "text": "@F_Gregaard @F_Gregaard why do you not also mention @MidnightNtwrk and what it has been bringing to the table?\n\nSurely you can see the benefits?",
@@ -26,7 +329,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 40,
+    "impressions": 75,
     "likes": 1,
     "replies": 0,
     "reposts": 0,
@@ -81,7 +384,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 21,
+    "impressions": 23,
     "likes": 0,
     "replies": 0,
     "reposts": 0,
@@ -131,7 +434,7 @@
     "impressions": 7,
     "likes": 0,
     "replies": 0,
-    "reposts": 172,
+    "reposts": 194,
     "quotes": 0,
     "bookmarks": 0
    },
@@ -183,7 +486,7 @@
     "impressions": 10,
     "likes": 0,
     "replies": 0,
-    "reposts": 16,
+    "reposts": 17,
     "quotes": 0,
     "bookmarks": 0
    },
@@ -230,7 +533,7 @@
     "https://x.com/Jinx_MJ_K/status/2122323469656527023/photo/1"
    ],
    "metrics": {
-    "impressions": 31,
+    "impressions": 34,
     "likes": 1,
     "replies": 0,
     "reposts": 0,
@@ -278,7 +581,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 63,
+    "impressions": 68,
     "likes": 3,
     "replies": 1,
     "reposts": 0,
@@ -323,7 +626,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 86,
+    "impressions": 92,
     "likes": 1,
     "replies": 0,
     "reposts": 0,
@@ -369,7 +672,7 @@
     "impressions": 18,
     "likes": 0,
     "replies": 0,
-    "reposts": 24,
+    "reposts": 25,
     "quotes": 0,
     "bookmarks": 0
    },
@@ -404,7 +707,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 747,
+    "impressions": 770,
     "likes": 8,
     "replies": 4,
     "reposts": 0,
@@ -454,7 +757,7 @@
     "https://midnight.network/brand-hub"
    ],
    "metrics": {
-    "impressions": 30,
+    "impressions": 36,
     "likes": 0,
     "replies": 0,
     "reposts": 0,
@@ -499,7 +802,7 @@
     "https://midnight.network/brand-hub"
    ],
    "metrics": {
-    "impressions": 59,
+    "impressions": 60,
     "likes": 2,
     "replies": 2,
     "reposts": 0,
@@ -543,7 +846,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 96,
+    "impressions": 97,
     "likes": 5,
     "replies": 0,
     "reposts": 0,
@@ -638,7 +941,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 61,
+    "impressions": 63,
     "likes": 4,
     "replies": 0,
     "reposts": 0,
@@ -726,7 +1029,7 @@
     "https://twitter.com/MidnightNtwrk/status/2120879542302573015"
    ],
    "metrics": {
-    "impressions": 754,
+    "impressions": 757,
     "likes": 34,
     "replies": 1,
     "reposts": 3,
@@ -892,51 +1195,6 @@
     "likes": 1,
     "replies": 1,
     "reposts": 0,
-    "quotes": 0,
-    "bookmarks": 0
-   },
-   "source": "api",
-   "first_seen": "2026-11-12T06:50:30.987Z",
-   "class": {
-    "midnight": true,
-    "score": 3,
-    "confidence": "high",
-    "review": false,
-    "reasons": [
-     "@midnightntwrk"
-    ],
-    "themes": [
-     "general"
-    ],
-    "local": false
-   }
-  },
-  {
-   "id": "2120682542647173560",
-   "created_at": "2026-11-12T00:58:13.000Z",
-   "text": "RT @Jinx_MJ_K: I made some changes and updates\n\nIf you want to get started on @MidnightNtwrk or @Cardano here are some quick resources.\n\nBU…",
-   "kind": "repost",
-   "refs": [
-    {
-     "type": "repost",
-     "author": "Jinx_MJ_K"
-    }
-   ],
-   "url": "https://x.com/Jinx_MJ_K/status/2120682542647173560",
-   "lang": "en",
-   "mentions": [
-    "Jinx_MJ_K",
-    "MidnightNtwrk",
-    "Cardano"
-   ],
-   "hashtags": [],
-   "cashtags": [],
-   "urls": [],
-   "metrics": {
-    "impressions": 0,
-    "likes": 0,
-    "replies": 0,
-    "reposts": 7,
     "quotes": 0,
     "bookmarks": 0
    },
@@ -30604,6 +30862,49 @@
    }
   },
   {
+   "id": "2048730213337772396",
+   "created_at": "2026-04-27T11:45:21.000Z",
+   "text": "The real world version\nNow make it digital.\n\nMidnight uses this same idea to let you prove things about yourself on the blockchain — without revealing your personal data.\n\nAge. Income. Citizenship. Credit score.\nProved. Never shown.\n\nSource: https://t.co/pcVAtPY1sh\n\n4/10",
+   "kind": "thread",
+   "refs": [
+    {
+     "type": "thread",
+     "author": "Jinx_MJ_K"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2048730213337772396",
+   "lang": "en",
+   "mentions": [],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [
+    "https://docs.midnight.network/blog/web3-intro-what-are-zkps"
+   ],
+   "metrics": {
+    "impressions": 25,
+    "likes": 3,
+    "replies": 1,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-11T05:31:20.918Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "midnight.network"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
    "id": "2048730216907092241",
    "created_at": "2026-04-27T11:45:21.000Z",
    "text": "The three rules of ZK\nEvery ZK proof follows three rules:\n\n- Completeness — if it's true, you can prove it\n- Soundness — if it's false, you can't fake it\n- Zero-knowledge — the verifier learns nothing except \"yes, it's true\"\n\nThree rules. Thousands of use cases. One Midnight network.\n\n5/10",
@@ -30643,49 +30944,6 @@
     "themes": [
      "build",
      "education"
-    ],
-    "local": false
-   }
-  },
-  {
-   "id": "2048730213337772396",
-   "created_at": "2026-04-27T11:45:21.000Z",
-   "text": "The real world version\nNow make it digital.\n\nMidnight uses this same idea to let you prove things about yourself on the blockchain — without revealing your personal data.\n\nAge. Income. Citizenship. Credit score.\nProved. Never shown.\n\nSource: https://t.co/pcVAtPY1sh\n\n4/10",
-   "kind": "thread",
-   "refs": [
-    {
-     "type": "thread",
-     "author": "Jinx_MJ_K"
-    }
-   ],
-   "url": "https://x.com/Jinx_MJ_K/status/2048730213337772396",
-   "lang": "en",
-   "mentions": [],
-   "hashtags": [],
-   "cashtags": [],
-   "urls": [
-    "https://docs.midnight.network/blog/web3-intro-what-are-zkps"
-   ],
-   "metrics": {
-    "impressions": 25,
-    "likes": 3,
-    "replies": 1,
-    "reposts": 0,
-    "quotes": 0,
-    "bookmarks": 0
-   },
-   "source": "api",
-   "first_seen": "2026-11-11T05:31:20.918Z",
-   "class": {
-    "midnight": true,
-    "score": 3,
-    "confidence": "high",
-    "review": false,
-    "reasons": [
-     "midnight.network"
-    ],
-    "themes": [
-     "general"
     ],
     "local": false
    }
@@ -44513,6 +44771,16 @@
  ],
  "other": [
   {
+   "id": "2122948558647415185",
+   "created_at": "2026-11-18T07:02:33.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2122699854032073152",
+   "created_at": "2026-11-17T14:34:17.000Z",
+   "kind": "reply"
+  },
+  {
    "id": "2122609664315838567",
    "created_at": "2026-11-17T08:35:54.000Z",
    "kind": "reply"
@@ -44673,14 +44941,14 @@
    "kind": "thread"
   },
   {
-   "id": "2121237712921649398",
-   "created_at": "2026-11-13T13:44:16.000Z",
-   "kind": "quote"
-  },
-  {
    "id": "2121237715886972980",
    "created_at": "2026-11-13T13:44:16.000Z",
    "kind": "reply"
+  },
+  {
+   "id": "2121237712921649398",
+   "created_at": "2026-11-13T13:44:16.000Z",
+   "kind": "quote"
   },
   {
    "id": "2121149962990076011",
@@ -54128,12 +54396,12 @@
    "kind": "reply"
   },
   {
-   "id": "2051283306449371342",
+   "id": "2051283303081337323",
    "created_at": "2026-05-04T12:50:25.000Z",
    "kind": "thread"
   },
   {
-   "id": "2051283303081337323",
+   "id": "2051283306449371342",
    "created_at": "2026-05-04T12:50:25.000Z",
    "kind": "thread"
   },
@@ -54143,14 +54411,14 @@
    "kind": "thread"
   },
   {
-   "id": "2051283296865423534",
-   "created_at": "2026-05-04T12:50:23.000Z",
-   "kind": "thread"
-  },
-  {
    "id": "2051283294290067723",
    "created_at": "2026-05-04T12:50:23.000Z",
    "kind": "quote"
+  },
+  {
+   "id": "2051283296865423534",
+   "created_at": "2026-05-04T12:50:23.000Z",
+   "kind": "thread"
   },
   {
    "id": "2051237795289833891",
@@ -56143,12 +56411,12 @@
    "kind": "thread"
   },
   {
-   "id": "2044755870794522756",
+   "id": "2044755866927440289",
    "created_at": "2026-04-16T12:32:43.000Z",
    "kind": "thread"
   },
   {
-   "id": "2044755866927440289",
+   "id": "2044755870794522756",
    "created_at": "2026-04-16T12:32:43.000Z",
    "kind": "thread"
   },
@@ -61303,12 +61571,12 @@
    "kind": "reply"
   },
   {
-   "id": "2032447388670107837",
+   "id": "2032447391614566431",
    "created_at": "2026-03-13T13:23:13.000Z",
    "kind": "reply"
   },
   {
-   "id": "2032447391614566431",
+   "id": "2032447388670107837",
    "created_at": "2026-03-13T13:23:13.000Z",
    "kind": "reply"
   },
@@ -62423,12 +62691,12 @@
    "kind": "thread"
   },
   {
-   "id": "2031588701890060746",
+   "id": "2031588704276578374",
    "created_at": "2026-03-11T04:31:06.000Z",
    "kind": "thread"
   },
   {
-   "id": "2031588704276578374",
+   "id": "2031588701890060746",
    "created_at": "2026-03-11T04:31:06.000Z",
    "kind": "thread"
   },
@@ -65718,12 +65986,12 @@
    "kind": "reply"
   },
   {
-   "id": "2030078375277252936",
+   "id": "2030078376212639866",
    "created_at": "2026-03-07T00:29:36.000Z",
    "kind": "reply"
   },
   {
-   "id": "2030078376212639866",
+   "id": "2030078375277252936",
    "created_at": "2026-03-07T00:29:36.000Z",
    "kind": "reply"
   },
@@ -76643,14 +76911,14 @@
    "kind": "reply"
   },
   {
-   "id": "1976592149417169150",
-   "created_at": "2025-10-10T10:14:26.000Z",
-   "kind": "repost"
-  },
-  {
    "id": "1976592151145296314",
    "created_at": "2025-10-10T10:14:26.000Z",
    "kind": "reply"
+  },
+  {
+   "id": "1976592149417169150",
+   "created_at": "2025-10-10T10:14:26.000Z",
+   "kind": "repost"
   },
   {
    "id": "1976570462965735751",
@@ -81648,14 +81916,14 @@
    "kind": "reply"
   },
   {
-   "id": "1942909156605780293",
-   "created_at": "2025-07-09T11:30:15.000Z",
-   "kind": "repost"
-  },
-  {
    "id": "1942909157641797788",
    "created_at": "2025-07-09T11:30:15.000Z",
    "kind": "quote"
+  },
+  {
+   "id": "1942909156605780293",
+   "created_at": "2025-07-09T11:30:15.000Z",
+   "kind": "repost"
   },
   {
    "id": "1942907001794699712",
@@ -92873,12 +93141,12 @@
    "kind": "reply"
   },
   {
-   "id": "1885325357420806402",
+   "id": "1885325357483778514",
    "created_at": "2025-01-31T13:52:47.000Z",
    "kind": "reply"
   },
   {
-   "id": "1885325357483778514",
+   "id": "1885325357420806402",
    "created_at": "2025-01-31T13:52:47.000Z",
    "kind": "reply"
   },
