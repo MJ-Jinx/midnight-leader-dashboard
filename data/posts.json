@@ -1,6 +1,114 @@
 {
  "posts": [
   {
+   "id": "2124879322238623862",
+   "created_at": "2026-11-23T14:54:43.000Z",
+   "text": "@anshul_vora18 @Sig_Network @MidnightNtwrk @MidnightIntern_ @DMillarDurrant @BRBussy @SydneyyNelsonn @astroboysoup @midnightfdn @StakeWithPride I hope you win the Best Content Creator Award for the Nightforce man! \n\nYou deserve it https://t.co/Jak6T0YNQq",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "anshul_vora18"
+    },
+    {
+     "type": "reply",
+     "author": "Sig_Network"
+    },
+    {
+     "type": "reply",
+     "author": "MidnightNtwrk"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2124879322238623862",
+   "lang": "en",
+   "mentions": [
+    "anshul_vora18",
+    "Sig_Network",
+    "MidnightNtwrk",
+    "MidnightIntern_",
+    "DMillarDurrant",
+    "BRBussy",
+    "SydneyyNelsonn",
+    "astroboysoup",
+    "midnightfdn",
+    "StakeWithPride"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [
+    "https://x.com/Jinx_MJ_K/status/2124879322238623862/photo/1"
+   ],
+   "metrics": {
+    "impressions": 83,
+    "likes": 2,
+    "replies": 1,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-24T14:47:15.807Z",
+   "class": {
+    "midnight": true,
+    "score": 9,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk",
+     "@midnightfdn",
+     "nightforce"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2124878941777473733",
+   "created_at": "2026-11-23T14:53:12.000Z",
+   "text": "RT @midnightfdn: Midnight 🤝 @txpipe_tools\n\nOracles bring real-world data onchain. They're essential infrastructure for the next generation…",
+   "kind": "repost",
+   "refs": [
+    {
+     "type": "repost",
+     "author": "midnightfdn"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2124878941777473733",
+   "lang": "en",
+   "mentions": [
+    "midnightfdn",
+    "txpipe_tools"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 8,
+    "likes": 0,
+    "replies": 0,
+    "reposts": 74,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-24T14:47:15.807Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightfdn"
+    ],
+    "themes": [
+     "amplify"
+    ],
+    "local": false
+   }
+  },
+  {
    "id": "2124866292339650836",
    "created_at": "2026-11-23T14:02:56.000Z",
    "text": "RT @Jinx_MJ_K: @MidnightNtwrk will be at the @binance Blockchain Week in Bangkok on the 28-29th \n\nCome and hang out with us and let us talk…",
@@ -25,7 +133,7 @@
     "impressions": 0,
     "likes": 0,
     "replies": 0,
-    "reposts": 4,
+    "reposts": 5,
     "quotes": 0,
     "bookmarks": 0
    },
@@ -75,7 +183,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 43,
+    "impressions": 45,
     "likes": 1,
     "replies": 0,
     "reposts": 0,
@@ -129,7 +237,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 30,
+    "impressions": 31,
     "likes": 1,
     "replies": 0,
     "reposts": 0,
@@ -184,7 +292,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 37,
+    "impressions": 38,
     "likes": 1,
     "replies": 0,
     "reposts": 0,
@@ -275,10 +383,10 @@
     "https://midnight.network/nightforce"
    ],
    "metrics": {
-    "impressions": 362,
-    "likes": 21,
-    "replies": 5,
-    "reposts": 4,
+    "impressions": 384,
+    "likes": 24,
+    "replies": 7,
+    "reposts": 5,
     "quotes": 1,
     "bookmarks": 0
    },
@@ -378,7 +486,7 @@
     "https://x.com/Jinx_MJ_K/status/2123765399095558594/photo/1"
    ],
    "metrics": {
-    "impressions": 22,
+    "impressions": 23,
     "likes": 1,
     "replies": 1,
     "reposts": 0,
@@ -547,7 +655,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 30,
+    "impressions": 31,
     "likes": 1,
     "replies": 0,
     "reposts": 0,
@@ -602,7 +710,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 32,
+    "impressions": 34,
     "likes": 1,
     "replies": 1,
     "reposts": 0,
@@ -646,7 +754,7 @@
     "https://discord.gg/midnightnetwork"
    ],
    "metrics": {
-    "impressions": 1148,
+    "impressions": 1169,
     "likes": 33,
     "replies": 5,
     "reposts": 11,
@@ -1012,7 +1120,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 1009,
+    "impressions": 1010,
     "likes": 43,
     "replies": 8,
     "reposts": 3,
@@ -31696,49 +31804,6 @@
    }
   },
   {
-   "id": "2048730213337772396",
-   "created_at": "2026-04-27T11:45:21.000Z",
-   "text": "The real world version\nNow make it digital.\n\nMidnight uses this same idea to let you prove things about yourself on the blockchain — without revealing your personal data.\n\nAge. Income. Citizenship. Credit score.\nProved. Never shown.\n\nSource: https://t.co/pcVAtPY1sh\n\n4/10",
-   "kind": "thread",
-   "refs": [
-    {
-     "type": "thread",
-     "author": "Jinx_MJ_K"
-    }
-   ],
-   "url": "https://x.com/Jinx_MJ_K/status/2048730213337772396",
-   "lang": "en",
-   "mentions": [],
-   "hashtags": [],
-   "cashtags": [],
-   "urls": [
-    "https://docs.midnight.network/blog/web3-intro-what-are-zkps"
-   ],
-   "metrics": {
-    "impressions": 25,
-    "likes": 3,
-    "replies": 1,
-    "reposts": 0,
-    "quotes": 0,
-    "bookmarks": 0
-   },
-   "source": "api",
-   "first_seen": "2026-11-11T05:31:20.918Z",
-   "class": {
-    "midnight": true,
-    "score": 3,
-    "confidence": "high",
-    "review": false,
-    "reasons": [
-     "midnight.network"
-    ],
-    "themes": [
-     "general"
-    ],
-    "local": false
-   }
-  },
-  {
    "id": "2048730216907092241",
    "created_at": "2026-04-27T11:45:21.000Z",
    "text": "The three rules of ZK\nEvery ZK proof follows three rules:\n\n- Completeness — if it's true, you can prove it\n- Soundness — if it's false, you can't fake it\n- Zero-knowledge — the verifier learns nothing except \"yes, it's true\"\n\nThree rules. Thousands of use cases. One Midnight network.\n\n5/10",
@@ -31778,6 +31843,49 @@
     "themes": [
      "build",
      "education"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2048730213337772396",
+   "created_at": "2026-04-27T11:45:21.000Z",
+   "text": "The real world version\nNow make it digital.\n\nMidnight uses this same idea to let you prove things about yourself on the blockchain — without revealing your personal data.\n\nAge. Income. Citizenship. Credit score.\nProved. Never shown.\n\nSource: https://t.co/pcVAtPY1sh\n\n4/10",
+   "kind": "thread",
+   "refs": [
+    {
+     "type": "thread",
+     "author": "Jinx_MJ_K"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2048730213337772396",
+   "lang": "en",
+   "mentions": [],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [
+    "https://docs.midnight.network/blog/web3-intro-what-are-zkps"
+   ],
+   "metrics": {
+    "impressions": 25,
+    "likes": 3,
+    "replies": 1,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-11T05:31:20.918Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "midnight.network"
+    ],
+    "themes": [
+     "general"
     ],
     "local": false
    }
@@ -45830,14 +45938,14 @@
    "kind": "thread"
   },
   {
-   "id": "2121237715886972980",
-   "created_at": "2026-11-13T13:44:16.000Z",
-   "kind": "reply"
-  },
-  {
    "id": "2121237712921649398",
    "created_at": "2026-11-13T13:44:16.000Z",
    "kind": "quote"
+  },
+  {
+   "id": "2121237715886972980",
+   "created_at": "2026-11-13T13:44:16.000Z",
+   "kind": "reply"
   },
   {
    "id": "2121149962990076011",
@@ -55285,12 +55393,12 @@
    "kind": "reply"
   },
   {
-   "id": "2051283303081337323",
+   "id": "2051283306449371342",
    "created_at": "2026-05-04T12:50:25.000Z",
    "kind": "thread"
   },
   {
-   "id": "2051283306449371342",
+   "id": "2051283303081337323",
    "created_at": "2026-05-04T12:50:25.000Z",
    "kind": "thread"
   },
@@ -55300,14 +55408,14 @@
    "kind": "thread"
   },
   {
-   "id": "2051283294290067723",
-   "created_at": "2026-05-04T12:50:23.000Z",
-   "kind": "quote"
-  },
-  {
    "id": "2051283296865423534",
    "created_at": "2026-05-04T12:50:23.000Z",
    "kind": "thread"
+  },
+  {
+   "id": "2051283294290067723",
+   "created_at": "2026-05-04T12:50:23.000Z",
+   "kind": "quote"
   },
   {
    "id": "2051237795289833891",
@@ -57300,12 +57408,12 @@
    "kind": "thread"
   },
   {
-   "id": "2044755866927440289",
+   "id": "2044755870794522756",
    "created_at": "2026-04-16T12:32:43.000Z",
    "kind": "thread"
   },
   {
-   "id": "2044755870794522756",
+   "id": "2044755866927440289",
    "created_at": "2026-04-16T12:32:43.000Z",
    "kind": "thread"
   },
@@ -62460,12 +62568,12 @@
    "kind": "reply"
   },
   {
-   "id": "2032447391614566431",
+   "id": "2032447388670107837",
    "created_at": "2026-03-13T13:23:13.000Z",
    "kind": "reply"
   },
   {
-   "id": "2032447388670107837",
+   "id": "2032447391614566431",
    "created_at": "2026-03-13T13:23:13.000Z",
    "kind": "reply"
   },
@@ -63580,12 +63688,12 @@
    "kind": "thread"
   },
   {
-   "id": "2031588704276578374",
+   "id": "2031588701890060746",
    "created_at": "2026-03-11T04:31:06.000Z",
    "kind": "thread"
   },
   {
-   "id": "2031588701890060746",
+   "id": "2031588704276578374",
    "created_at": "2026-03-11T04:31:06.000Z",
    "kind": "thread"
   },
@@ -66875,12 +66983,12 @@
    "kind": "reply"
   },
   {
-   "id": "2030078376212639866",
+   "id": "2030078375277252936",
    "created_at": "2026-03-07T00:29:36.000Z",
    "kind": "reply"
   },
   {
-   "id": "2030078375277252936",
+   "id": "2030078376212639866",
    "created_at": "2026-03-07T00:29:36.000Z",
    "kind": "reply"
   },
@@ -77800,14 +77908,14 @@
    "kind": "reply"
   },
   {
-   "id": "1976592151145296314",
-   "created_at": "2025-10-10T10:14:26.000Z",
-   "kind": "reply"
-  },
-  {
    "id": "1976592149417169150",
    "created_at": "2025-10-10T10:14:26.000Z",
    "kind": "repost"
+  },
+  {
+   "id": "1976592151145296314",
+   "created_at": "2025-10-10T10:14:26.000Z",
+   "kind": "reply"
   },
   {
    "id": "1976570462965735751",
@@ -82805,14 +82913,14 @@
    "kind": "reply"
   },
   {
-   "id": "1942909157641797788",
-   "created_at": "2025-07-09T11:30:15.000Z",
-   "kind": "quote"
-  },
-  {
    "id": "1942909156605780293",
    "created_at": "2025-07-09T11:30:15.000Z",
    "kind": "repost"
+  },
+  {
+   "id": "1942909157641797788",
+   "created_at": "2025-07-09T11:30:15.000Z",
+   "kind": "quote"
   },
   {
    "id": "1942907001794699712",
@@ -94030,12 +94138,12 @@
    "kind": "reply"
   },
   {
-   "id": "1885325357483778514",
+   "id": "1885325357420806402",
    "created_at": "2025-01-31T13:52:47.000Z",
    "kind": "reply"
   },
   {
-   "id": "1885325357420806402",
+   "id": "1885325357483778514",
    "created_at": "2025-01-31T13:52:47.000Z",
    "kind": "reply"
   },
