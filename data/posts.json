@@ -1,6 +1,584 @@
 {
  "posts": [
   {
+   "id": "2125572571064316057",
+   "created_at": "2026-11-25T12:49:26.000Z",
+   "text": "@Keyle_ada @MidnightNtwrk @Noctis_Zone @IOHK_Charles @jackoconnorx Just the start I believe!\n\nPassport will unlock so much more",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "Keyle_ada"
+    },
+    {
+     "type": "reply",
+     "author": "MidnightNtwrk"
+    },
+    {
+     "type": "reply",
+     "author": "Noctis_Zone"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2125572571064316057",
+   "lang": "en",
+   "mentions": [
+    "Keyle_ada",
+    "MidnightNtwrk",
+    "Noctis_Zone",
+    "IOHK_Charles",
+    "jackoconnorx"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 14,
+    "likes": 0,
+    "replies": 0,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-25T14:14:23.864Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2125497166307422282",
+   "created_at": "2026-11-25T07:49:48.000Z",
+   "text": "@Dipseverlasting @MidnightNtwrk @Noctis_Zone @IOHK_Charles @jackoconnorx Squeezing the juice out of me I see",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "Dipseverlasting"
+    },
+    {
+     "type": "reply",
+     "author": "MidnightNtwrk"
+    },
+    {
+     "type": "reply",
+     "author": "Noctis_Zone"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2125497166307422282",
+   "lang": "en",
+   "mentions": [
+    "Dipseverlasting",
+    "MidnightNtwrk",
+    "Noctis_Zone",
+    "IOHK_Charles",
+    "jackoconnorx"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 25,
+    "likes": 0,
+    "replies": 0,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-25T14:14:23.864Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2125494194005565588",
+   "created_at": "2026-11-25T07:38:00.000Z",
+   "text": "@KhanhSGVN @MidnightNtwrk @midnightfdn @MidnightIntern_ @IOHK_Charles @evarodriguez_m @jackoconnorx @SydneyyNelsonn https://t.co/0M7H8CSPMU",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "KhanhSGVN"
+    },
+    {
+     "type": "reply",
+     "author": "MidnightNtwrk"
+    },
+    {
+     "type": "reply",
+     "author": "midnightfdn"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2125494194005565588",
+   "lang": "qme",
+   "mentions": [
+    "KhanhSGVN",
+    "MidnightNtwrk",
+    "midnightfdn",
+    "MidnightIntern_",
+    "IOHK_Charles",
+    "evarodriguez_m",
+    "jackoconnorx",
+    "SydneyyNelsonn"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [
+    "https://x.com/Jinx_MJ_K/status/2125494194005565588/photo/1"
+   ],
+   "metrics": {
+    "impressions": 27,
+    "likes": 1,
+    "replies": 1,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-25T14:14:23.864Z",
+   "class": {
+    "midnight": true,
+    "score": 6,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk",
+     "@midnightfdn"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2125493311838597534",
+   "created_at": "2026-11-25T07:34:29.000Z",
+   "text": "@KhanhSGVN @MidnightNtwrk @midnightfdn @MidnightIntern_ @IOHK_Charles @evarodriguez_m @jackoconnorx @SydneyyNelsonn We can get you to be the Logo Police @SydneyyNelsonn and @evarodriguez_m will supply High 5s to you https://t.co/zigrhMpsNP",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "KhanhSGVN"
+    },
+    {
+     "type": "reply",
+     "author": "MidnightNtwrk"
+    },
+    {
+     "type": "reply",
+     "author": "midnightfdn"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2125493311838597534",
+   "lang": "en",
+   "mentions": [
+    "KhanhSGVN",
+    "MidnightNtwrk",
+    "midnightfdn",
+    "MidnightIntern_",
+    "IOHK_Charles",
+    "evarodriguez_m",
+    "jackoconnorx",
+    "SydneyyNelsonn",
+    "SydneyyNelsonn",
+    "evarodriguez_m"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [
+    "https://x.com/Jinx_MJ_K/status/2125493311838597534/photo/1"
+   ],
+   "metrics": {
+    "impressions": 27,
+    "likes": 1,
+    "replies": 1,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-25T14:14:23.864Z",
+   "class": {
+    "midnight": true,
+    "score": 6,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk",
+     "@midnightfdn"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2125492898057875725",
+   "created_at": "2026-11-25T07:32:51.000Z",
+   "text": "@Dipseverlasting @MidnightNtwrk @Noctis_Zone @IOHK_Charles @jackoconnorx What do you mean? Lol 🤣 what more do you want",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "Dipseverlasting"
+    },
+    {
+     "type": "reply",
+     "author": "MidnightNtwrk"
+    },
+    {
+     "type": "reply",
+     "author": "Noctis_Zone"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2125492898057875725",
+   "lang": "en",
+   "mentions": [
+    "Dipseverlasting",
+    "MidnightNtwrk",
+    "Noctis_Zone",
+    "IOHK_Charles",
+    "jackoconnorx"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 21,
+    "likes": 2,
+    "replies": 1,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-25T14:14:23.864Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2125460473575526403",
+   "created_at": "2026-11-25T05:24:00.000Z",
+   "text": "@visionandvibehq @MidnightNtwrk @midnightfdn @MidnightCitySim @MidnightIntern_ I hope all the best!",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "visionandvibehq"
+    },
+    {
+     "type": "reply",
+     "author": "MidnightNtwrk"
+    },
+    {
+     "type": "reply",
+     "author": "midnightfdn"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2125460473575526403",
+   "lang": "en",
+   "mentions": [
+    "visionandvibehq",
+    "MidnightNtwrk",
+    "midnightfdn",
+    "MidnightCitySim",
+    "MidnightIntern_"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 7,
+    "likes": 1,
+    "replies": 0,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-25T14:14:23.864Z",
+   "class": {
+    "midnight": true,
+    "score": 6,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk",
+     "@midnightfdn"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2125455943785988593",
+   "created_at": "2026-11-25T05:06:00.000Z",
+   "text": "Here is a breakdown of each Nomination and why I would like to earn your Vote!\n\nNominated: Golden Builder Award – Best Builder 2026\nHere's what I built on @MidnightNtwrk this year:\n✔️ @Noctis_Zone – multi-chain token launchpad with a private, shielded buying phase before the public bonding curve (Build Club Cohort 1, https://t.co/xioDKU42eh)\n✔️ @VINPassport – a digital vehicle passport on Midnight. Prove a car's history without revealing the data (@akindo_io Buildathon, https://t.co/NWd4iBeERc)\n✔️ Noctis Agentic × @ODATANO – an agent market running on Midnight Preprod since 3 Oct (https://t.co/FW8TienC6b)\n✔️ FLINT – private market-maker agents on Midnight, hedged on @strikeperps with @maxalexweber and @ODATANO_V4\n✔️ Waterline – check if a rental deposit is safe without exposing anyone's numbers (Korean Midnight Hackathon)\n\nShout out to @Midnight_Skills as well here!\n\n-----------------------------------------\n\nNominated: Chief Meme Officer\nMy qualifications:\n✅ Built an entire launchpad so memes can launch in private\n✅ Shielded buying phase = nobody front-runs your meme\n✅ Fluent in all Degen Lingo\n✅ I can converse in only GIFs if needed\n\nProof I deserve this? Zero-knowledge.\nYou can't see it, but the math checks out 🧮\n\nA real CMO doesn't just post memes. He becomes the Meme\nMeme replies are mandatory 😂\n\n-----------------------------------------\n\nNominated: Just Ship It Award\nMy 2026 shipping log on Midnight:\n📦 Noctis Zone – built (PreProd on Cardano and Midnight)\n📦 VINPassport – built (moving over to Mainnet)\n📦 Noctis Agentic agent market – on Preprod since 3 Oct\n📦 FLINT – built for the Strike hackathon\n📦 Waterline – deployed to preprod\n📦 KPI dashboard kit for my fellow Nightforce Leaders – open source on GitHub\n\nSelf-taught. Building in public. \"Just ship it\" is basically my job title.\n\n-----------------------------------------\n\nNominated: The Unofficial Support Desk Award\n\n☎️ I like catching scammers as a Community Mod\n☎️ If I can't help you I will direct the right people towards you\n☎️ I try and help to get people/projects showcased and listed on Midnight website\n\nI've helped a lot of non-technical people get started on Midnight. Now they're building and creating on their own, and watching that happen is the best part of this whole journey.\n\nPay what you know forward 🌙\nJoin Discord: https://t.co/wqqLpOY6yr\n\n-----------------------------------------\n\nNominated: The Broken Record Award\n\nLOGO POLICE - Hey please use the correct logo, \nLOGO POLICE - Hey please use the correct logo, \nLOGO POLICE - Hey please use the correct logo, @SydneyyNelsonn will love you then https://t.co/rbchDzXwnK\n\nGuilty as charged. I post about Midnight a lot, and I'll keep saying it until everyone hears it:\n🔁 Build on Midnight\n🔁 Selective disclosure > total exposure\n🔁 Just ship it\n🔁 Ask your questions in the Nightforce channels\n\n-----------------------------------------\n\nNominated: The \"Where Is My Merch?\" Award\nStatus update:\nThis one I would love to take however I feel like I need to shoutout @LearnMidnight that I helped push to get started building and his first project was @Nullifierio and hopefully soon it might be the Official Merch store for @midnightfdn and the Nightforce and General Public as well. I just troll him, @evarodriguez_m and others with \"Where is my Merch\" stickers on Discord. So please consider voting for him, unless you really really really want me to win this LOL\n\n-----------------------------------------\n\nI hope that I have and can earn your Votes!\n\nAll Nightforce Members go and vote Privately on Discord with @ShadowLabzio Discord Tool built with Midnight ZK tech.",
+   "kind": "original",
+   "refs": [],
+   "url": "https://x.com/Jinx_MJ_K/status/2125455943785988593",
+   "lang": "en",
+   "mentions": [
+    "MidnightNtwrk",
+    "Noctis_Zone",
+    "VINPassport",
+    "akindo_io",
+    "ODATANO",
+    "strikeperps",
+    "maxalexweber",
+    "ODATANO_V4",
+    "Midnight_Skills",
+    "SydneyyNelsonn",
+    "LearnMidnight",
+    "Nullifierio",
+    "midnightfdn",
+    "evarodriguez_m",
+    "ShadowLabzio"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [
+    "http://noctis.zone",
+    "http://passport.vin",
+    "http://noctisagentic.zone",
+    "https://discord.gg/JtAqZnEBcP",
+    "https://midnight.network/brand-hub"
+   ],
+   "metrics": {
+    "impressions": 554,
+    "likes": 18,
+    "replies": 4,
+    "reposts": 4,
+    "quotes": 1,
+    "bookmarks": 1
+   },
+   "source": "api",
+   "first_seen": "2026-11-25T14:14:23.864Z",
+   "class": {
+    "midnight": true,
+    "score": 20,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk",
+     "@midnightfdn",
+     "midnight.network",
+     "noctisagentic.zone",
+     "nightforce",
+     "noctis",
+     "zero-knowledge",
+     "zk"
+    ],
+    "themes": [
+     "build",
+     "education",
+     "amplify"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2125398042245546073",
+   "created_at": "2026-11-25T01:15:55.000Z",
+   "text": "@visionandvibehq @MidnightNtwrk @midnightfdn @MidnightCitySim @MidnightIntern_ I hope you win this award! You have my vote. https://t.co/XhtRjmuPw6",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "visionandvibehq"
+    },
+    {
+     "type": "reply",
+     "author": "MidnightNtwrk"
+    },
+    {
+     "type": "reply",
+     "author": "midnightfdn"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2125398042245546073",
+   "lang": "en",
+   "mentions": [
+    "visionandvibehq",
+    "MidnightNtwrk",
+    "midnightfdn",
+    "MidnightCitySim",
+    "MidnightIntern_"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [
+    "https://x.com/Jinx_MJ_K/status/2125398042245546073/photo/1"
+   ],
+   "metrics": {
+    "impressions": 23,
+    "likes": 1,
+    "replies": 1,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-25T14:14:23.864Z",
+   "class": {
+    "midnight": true,
+    "score": 6,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk",
+     "@midnightfdn"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2125396888665072108",
+   "created_at": "2026-11-25T01:11:20.000Z",
+   "text": "@MidnightNtwrk @midnightfdn @MidnightIntern_ @IOHK_Charles @evarodriguez_m @jackoconnorx @SydneyyNelsonn Shout out to @Midnight_Skills, @ODATANO_V4, @MidnightRadioSt, @Nullifierio and others in this space!",
+   "kind": "reply",
+   "refs": [
+    {
+     "type": "reply",
+     "author": "MidnightNtwrk"
+    },
+    {
+     "type": "reply",
+     "author": "midnightfdn"
+    },
+    {
+     "type": "reply",
+     "author": "MidnightIntern_"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2125396888665072108",
+   "lang": "en",
+   "mentions": [
+    "MidnightNtwrk",
+    "midnightfdn",
+    "MidnightIntern_",
+    "IOHK_Charles",
+    "evarodriguez_m",
+    "jackoconnorx",
+    "SydneyyNelsonn",
+    "Midnight_Skills",
+    "ODATANO_V4",
+    "MidnightRadioSt",
+    "Nullifierio"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [],
+   "metrics": {
+    "impressions": 454,
+    "likes": 9,
+    "replies": 2,
+    "reposts": 0,
+    "quotes": 1,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-25T14:14:23.864Z",
+   "class": {
+    "midnight": true,
+    "score": 6,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk",
+     "@midnightfdn"
+    ],
+    "themes": [
+     "events"
+    ],
+    "local": false
+   }
+  },
+  {
+   "id": "2125396054980124682",
+   "created_at": "2026-11-25T01:08:02.000Z",
+   "text": "Our @MidnightNtwrk Nightforce Awards are coming up and the finalist have been announced\n\nCongratulations to all that got Nominated and all well deserved. I would love to have your vote! Ask me anything on the Nightforce Channels on Discord https://t.co/wqqLpOY6yr if you want to know what I have been doing if you do not know!\n\nI was nominated for the following Categories:\n- Golden Builder Award: Best Builder 2026\n- Chief Meme Officer Award\n- Just ship it builders Award\n- The Unofficial Support Desk Award\n- The Broken Record Award\n- The Where Is My Merch? Award\n\nBuilt @Noctis_Zone (https://t.co/xioDKU42eh)\nBuilt @VINPassport (https://t.co/NWd4iBeERc)\n\nI also help many none technical people to get started with Midnight and they are all Killing in now. Pay what you know forward",
+   "kind": "original",
+   "refs": [],
+   "url": "https://x.com/Jinx_MJ_K/status/2125396054980124682",
+   "lang": "en",
+   "mentions": [
+    "MidnightNtwrk",
+    "Noctis_Zone",
+    "VINPassport"
+   ],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [
+    "https://discord.gg/JtAqZnEBcP",
+    "http://noctis.zone",
+    "http://passport.vin"
+   ],
+   "metrics": {
+    "impressions": 894,
+    "likes": 23,
+    "replies": 3,
+    "reposts": 3,
+    "quotes": 1,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-25T14:14:23.864Z",
+   "class": {
+    "midnight": true,
+    "score": 6,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "@midnightntwrk",
+     "nightforce"
+    ],
+    "themes": [
+     "build",
+     "amplify"
+    ],
+    "local": false
+   }
+  },
+  {
    "id": "2124879322238623862",
    "created_at": "2026-11-23T14:54:43.000Z",
    "text": "@anshul_vora18 @Sig_Network @MidnightNtwrk @MidnightIntern_ @DMillarDurrant @BRBussy @SydneyyNelsonn @astroboysoup @midnightfdn @StakeWithPride I hope you win the Best Content Creator Award for the Nightforce man! \n\nYou deserve it https://t.co/Jak6T0YNQq",
@@ -39,8 +617,8 @@
     "https://x.com/Jinx_MJ_K/status/2124879322238623862/photo/1"
    ],
    "metrics": {
-    "impressions": 83,
-    "likes": 2,
+    "impressions": 90,
+    "likes": 3,
     "replies": 1,
     "reposts": 0,
     "quotes": 0,
@@ -88,7 +666,7 @@
     "impressions": 8,
     "likes": 0,
     "replies": 0,
-    "reposts": 74,
+    "reposts": 80,
     "quotes": 0,
     "bookmarks": 0
    },
@@ -183,7 +761,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 45,
+    "impressions": 48,
     "likes": 1,
     "replies": 0,
     "reposts": 0,
@@ -237,7 +815,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 31,
+    "impressions": 32,
     "likes": 1,
     "replies": 0,
     "reposts": 0,
@@ -292,7 +870,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 38,
+    "impressions": 39,
     "likes": 1,
     "replies": 0,
     "reposts": 0,
@@ -341,7 +919,7 @@
    "cashtags": [],
    "urls": [],
    "metrics": {
-    "impressions": 40,
+    "impressions": 42,
     "likes": 2,
     "replies": 1,
     "reposts": 0,
@@ -383,8 +961,8 @@
     "https://midnight.network/nightforce"
    ],
    "metrics": {
-    "impressions": 384,
-    "likes": 24,
+    "impressions": 403,
+    "likes": 25,
     "replies": 7,
     "reposts": 5,
     "quotes": 1,
@@ -430,8 +1008,8 @@
     "https://twitter.com/i/status/2123827291465613704"
    ],
    "metrics": {
-    "impressions": 333,
-    "likes": 13,
+    "impressions": 339,
+    "likes": 14,
     "replies": 0,
     "reposts": 1,
     "quotes": 0,
@@ -754,7 +1332,7 @@
     "https://discord.gg/midnightnetwork"
    ],
    "metrics": {
-    "impressions": 1169,
+    "impressions": 1199,
     "likes": 33,
     "replies": 5,
     "reposts": 11,
@@ -31804,6 +32382,49 @@
    }
   },
   {
+   "id": "2048730213337772396",
+   "created_at": "2026-04-27T11:45:21.000Z",
+   "text": "The real world version\nNow make it digital.\n\nMidnight uses this same idea to let you prove things about yourself on the blockchain — without revealing your personal data.\n\nAge. Income. Citizenship. Credit score.\nProved. Never shown.\n\nSource: https://t.co/pcVAtPY1sh\n\n4/10",
+   "kind": "thread",
+   "refs": [
+    {
+     "type": "thread",
+     "author": "Jinx_MJ_K"
+    }
+   ],
+   "url": "https://x.com/Jinx_MJ_K/status/2048730213337772396",
+   "lang": "en",
+   "mentions": [],
+   "hashtags": [],
+   "cashtags": [],
+   "urls": [
+    "https://docs.midnight.network/blog/web3-intro-what-are-zkps"
+   ],
+   "metrics": {
+    "impressions": 25,
+    "likes": 3,
+    "replies": 1,
+    "reposts": 0,
+    "quotes": 0,
+    "bookmarks": 0
+   },
+   "source": "api",
+   "first_seen": "2026-11-11T05:31:20.918Z",
+   "class": {
+    "midnight": true,
+    "score": 3,
+    "confidence": "high",
+    "review": false,
+    "reasons": [
+     "midnight.network"
+    ],
+    "themes": [
+     "general"
+    ],
+    "local": false
+   }
+  },
+  {
    "id": "2048730216907092241",
    "created_at": "2026-04-27T11:45:21.000Z",
    "text": "The three rules of ZK\nEvery ZK proof follows three rules:\n\n- Completeness — if it's true, you can prove it\n- Soundness — if it's false, you can't fake it\n- Zero-knowledge — the verifier learns nothing except \"yes, it's true\"\n\nThree rules. Thousands of use cases. One Midnight network.\n\n5/10",
@@ -31843,49 +32464,6 @@
     "themes": [
      "build",
      "education"
-    ],
-    "local": false
-   }
-  },
-  {
-   "id": "2048730213337772396",
-   "created_at": "2026-04-27T11:45:21.000Z",
-   "text": "The real world version\nNow make it digital.\n\nMidnight uses this same idea to let you prove things about yourself on the blockchain — without revealing your personal data.\n\nAge. Income. Citizenship. Credit score.\nProved. Never shown.\n\nSource: https://t.co/pcVAtPY1sh\n\n4/10",
-   "kind": "thread",
-   "refs": [
-    {
-     "type": "thread",
-     "author": "Jinx_MJ_K"
-    }
-   ],
-   "url": "https://x.com/Jinx_MJ_K/status/2048730213337772396",
-   "lang": "en",
-   "mentions": [],
-   "hashtags": [],
-   "cashtags": [],
-   "urls": [
-    "https://docs.midnight.network/blog/web3-intro-what-are-zkps"
-   ],
-   "metrics": {
-    "impressions": 25,
-    "likes": 3,
-    "replies": 1,
-    "reposts": 0,
-    "quotes": 0,
-    "bookmarks": 0
-   },
-   "source": "api",
-   "first_seen": "2026-11-11T05:31:20.918Z",
-   "class": {
-    "midnight": true,
-    "score": 3,
-    "confidence": "high",
-    "review": false,
-    "reasons": [
-     "midnight.network"
-    ],
-    "themes": [
-     "general"
     ],
     "local": false
    }
@@ -45713,6 +46291,46 @@
  ],
  "other": [
   {
+   "id": "2125590997484921154",
+   "created_at": "2026-11-25T14:02:40.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2125560704145240531",
+   "created_at": "2026-11-25T12:02:17.000Z",
+   "kind": "repost"
+  },
+  {
+   "id": "2125521028734689292",
+   "created_at": "2026-11-25T09:24:38.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2125493936664047858",
+   "created_at": "2026-11-25T07:36:58.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2125431689619136613",
+   "created_at": "2026-11-25T03:29:38.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2125431247036170721",
+   "created_at": "2026-11-25T03:27:52.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2125420979946237959",
+   "created_at": "2026-11-25T02:47:04.000Z",
+   "kind": "reply"
+  },
+  {
+   "id": "2125420742070415443",
+   "created_at": "2026-11-25T02:46:07.000Z",
+   "kind": "reply"
+  },
+  {
    "id": "2124138950109597978",
    "created_at": "2026-11-21T13:52:44.000Z",
    "kind": "reply"
@@ -45938,14 +46556,14 @@
    "kind": "thread"
   },
   {
-   "id": "2121237712921649398",
-   "created_at": "2026-11-13T13:44:16.000Z",
-   "kind": "quote"
-  },
-  {
    "id": "2121237715886972980",
    "created_at": "2026-11-13T13:44:16.000Z",
    "kind": "reply"
+  },
+  {
+   "id": "2121237712921649398",
+   "created_at": "2026-11-13T13:44:16.000Z",
+   "kind": "quote"
   },
   {
    "id": "2121149962990076011",
@@ -55393,12 +56011,12 @@
    "kind": "reply"
   },
   {
-   "id": "2051283306449371342",
+   "id": "2051283303081337323",
    "created_at": "2026-05-04T12:50:25.000Z",
    "kind": "thread"
   },
   {
-   "id": "2051283303081337323",
+   "id": "2051283306449371342",
    "created_at": "2026-05-04T12:50:25.000Z",
    "kind": "thread"
   },
@@ -55408,14 +56026,14 @@
    "kind": "thread"
   },
   {
-   "id": "2051283296865423534",
-   "created_at": "2026-05-04T12:50:23.000Z",
-   "kind": "thread"
-  },
-  {
    "id": "2051283294290067723",
    "created_at": "2026-05-04T12:50:23.000Z",
    "kind": "quote"
+  },
+  {
+   "id": "2051283296865423534",
+   "created_at": "2026-05-04T12:50:23.000Z",
+   "kind": "thread"
   },
   {
    "id": "2051237795289833891",
@@ -57408,12 +58026,12 @@
    "kind": "thread"
   },
   {
-   "id": "2044755870794522756",
+   "id": "2044755866927440289",
    "created_at": "2026-04-16T12:32:43.000Z",
    "kind": "thread"
   },
   {
-   "id": "2044755866927440289",
+   "id": "2044755870794522756",
    "created_at": "2026-04-16T12:32:43.000Z",
    "kind": "thread"
   },
@@ -62568,12 +63186,12 @@
    "kind": "reply"
   },
   {
-   "id": "2032447388670107837",
+   "id": "2032447391614566431",
    "created_at": "2026-03-13T13:23:13.000Z",
    "kind": "reply"
   },
   {
-   "id": "2032447391614566431",
+   "id": "2032447388670107837",
    "created_at": "2026-03-13T13:23:13.000Z",
    "kind": "reply"
   },
@@ -63688,12 +64306,12 @@
    "kind": "thread"
   },
   {
-   "id": "2031588701890060746",
+   "id": "2031588704276578374",
    "created_at": "2026-03-11T04:31:06.000Z",
    "kind": "thread"
   },
   {
-   "id": "2031588704276578374",
+   "id": "2031588701890060746",
    "created_at": "2026-03-11T04:31:06.000Z",
    "kind": "thread"
   },
@@ -66983,12 +67601,12 @@
    "kind": "reply"
   },
   {
-   "id": "2030078375277252936",
+   "id": "2030078376212639866",
    "created_at": "2026-03-07T00:29:36.000Z",
    "kind": "reply"
   },
   {
-   "id": "2030078376212639866",
+   "id": "2030078375277252936",
    "created_at": "2026-03-07T00:29:36.000Z",
    "kind": "reply"
   },
@@ -77908,14 +78526,14 @@
    "kind": "reply"
   },
   {
-   "id": "1976592149417169150",
-   "created_at": "2025-10-10T10:14:26.000Z",
-   "kind": "repost"
-  },
-  {
    "id": "1976592151145296314",
    "created_at": "2025-10-10T10:14:26.000Z",
    "kind": "reply"
+  },
+  {
+   "id": "1976592149417169150",
+   "created_at": "2025-10-10T10:14:26.000Z",
+   "kind": "repost"
   },
   {
    "id": "1976570462965735751",
@@ -82913,14 +83531,14 @@
    "kind": "reply"
   },
   {
-   "id": "1942909156605780293",
-   "created_at": "2025-07-09T11:30:15.000Z",
-   "kind": "repost"
-  },
-  {
    "id": "1942909157641797788",
    "created_at": "2025-07-09T11:30:15.000Z",
    "kind": "quote"
+  },
+  {
+   "id": "1942909156605780293",
+   "created_at": "2025-07-09T11:30:15.000Z",
+   "kind": "repost"
   },
   {
    "id": "1942907001794699712",
@@ -94138,12 +94756,12 @@
    "kind": "reply"
   },
   {
-   "id": "1885325357420806402",
+   "id": "1885325357483778514",
    "created_at": "2025-01-31T13:52:47.000Z",
    "kind": "reply"
   },
   {
-   "id": "1885325357483778514",
+   "id": "1885325357420806402",
    "created_at": "2025-01-31T13:52:47.000Z",
    "kind": "reply"
   },
